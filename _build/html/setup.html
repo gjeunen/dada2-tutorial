@@ -1,0 +1,865 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Setting up the environment &#8212; Japan eDNA bootcamp 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'setup';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bioinformatic analysis" href="bioinformaticanalysis.html" />
+    <link rel="prev" title="Japan eDNA bootcamp 2025" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Japan eDNA bootcamp 2025 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Japan eDNA bootcamp 2025 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Japan eDNA bootcamp 2025
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setting up the environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bioinformaticanalysis.html">Bioinformatic analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taxonomyassignment.html">Taxonomy assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datacuration.html">Data curation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phylogenetictree.html">Phylogenetic tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statisticalanalysis.html">Statistical analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fsetup.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/setup.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Setting up the environment</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-file">1. Starting file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rstudio">2. RStudio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">2.1 Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rstudio-interface">2.2 The RStudio interface</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#folder-structure-starting-files">3. Folder structure &amp; Starting files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navigating-and-executing-code-in-rstudio">3.1 Navigating and executing code in RStudio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#folder-structure">3.2 Folder structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-files">3.3 Starting files</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="setting-up-the-environment">
+<h1>Setting up the environment<a class="headerlink" href="#setting-up-the-environment" title="Link to this heading">#</a></h1>
+<section id="starting-file">
+<h2>1. Starting file<a class="headerlink" href="#starting-file" title="Link to this heading">#</a></h2>
+<p>To follow along with this tutorial, you will need access to this website, as well as a single tarball (filename: <strong>japan_eDNA_bootcamp_files.tar.gz</strong>). The website contains all the code we will be using, while the zipped file contains all the data necessary to successfully execute the code.</p>
+<p>To start, place the tarball (filename: <strong>japan_eDNA_bootcamp_files.tar.gz</strong>) into an empty directory you will use for this workshop. For consistency, let’s name this new folder <code class="docutils literal notranslate"><span class="pre">bootcamp</span></code> and place it on your Desktop.</p>
+<figure class="align-default" id="starting-file-screen">
+<img alt="_images/starting_file_screen.png" src="_images/starting_file_screen.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">: The starting screen for this workflow (note: this worflow was developed on MacOS, slight differences might be experienced on Windows or Linux)</span><a class="headerlink" href="#starting-file-screen" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="rstudio">
+<h2>2. RStudio<a class="headerlink" href="#rstudio" title="Link to this heading">#</a></h2>
+<section id="introduction">
+<h3>2.1 Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h3>
+<p>During this course, we will be using the <a class="reference external" href="https://cran.r-project.org/">RStudio Desktop application</a>, the most widely-used Integrated Development Environment (IDE) for working with <a class="reference external" href="https://cran.r-project.org/">R</a>, to analyse and visualise eDNA metabarcoding data. RStudio provides a powerful and user-friendly interface for:</p>
+<ol class="arabic simple">
+<li><p>writing and executing R code</p></li>
+<li><p>data wrangling</p></li>
+<li><p>statistical analysis</p></li>
+<li><p>publication-quality figures</p></li>
+<li><p>reproducible research</p></li>
+</ol>
+<p>While prior R experience will be beneficial, we aim to keep things simple and start with the essentials!</p>
+</section>
+<section id="the-rstudio-interface">
+<h3>2.2 The RStudio interface<a class="headerlink" href="#the-rstudio-interface" title="Link to this heading">#</a></h3>
+<p>The RStudio interface is divided into 4 primary panels, each serving a specific purpose in data analysis. Since we will be using all of them during this bootcamp, let’s quickly introduce each of them.</p>
+<ol class="arabic simple">
+<li><p>Source Editor (Top-left)</p>
+<ol class="arabic simple">
+<li><p>Purpose: Write, edit, and execute scripts</p></li>
+<li><p>Key features:</p>
+<ol class="arabic simple">
+<li><p>Tabbed documents for <code class="docutils literal notranslate"><span class="pre">.R</span></code> scripts, notebooks, or metadata files and dataframes.</p></li>
+<li><p>Syntax highlighting for debugging.</p></li>
+<li><p>Run button to execute code line-by-line or in chunks.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Console and Terminal (Bottom-left)</p>
+<ol class="arabic simple">
+<li><p>Purpose:</p>
+<ol class="arabic simple">
+<li><p>Console: Directly interact with R to execute commands and view raw output.</p></li>
+<li><p>Terminal: Indirectly interact with the shell environment to access command-line interface (CLI) programs.</p></li>
+</ol>
+</li>
+<li><p>Key features:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code> prompt for live coding.</p></li>
+<li><p>Tab-completion for functions and filenames.</p></li>
+<li><p>Up-arrow to recall previous commands.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Environment and History (Top-right)</p>
+<ol class="arabic simple">
+<li><p>Environment:</p>
+<ol class="arabic simple">
+<li><p>List all loaded objects, such as dataframes and variables</p></li>
+<li><p>Click any object to view it as a spreadsheet in the Source Editor panel.</p></li>
+</ol>
+</li>
+<li><p>History:</p>
+<ol class="arabic simple">
+<li><p>Review all executed commands (can be saved to a script).</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Files, Plots, Packages, and Help (Bottom-right)</p>
+<ol class="arabic simple">
+<li><p>Files: Navigate project directories.</p></li>
+<li><p>Plots: Visualise and export graphs as PDF/PNG for publications.</p></li>
+<li><p>Packages: Check, update, or install R packages needed for analysis.</p></li>
+<li><p>Help: Search documentation for R packages, essential for troubleshooting.</p></li>
+</ol>
+</li>
+</ol>
+<figure class="align-default" id="rstudio-start-screen">
+<img alt="_images/rstudio_start_screen.png" src="_images/rstudio_start_screen.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">: The starting screen for RStudio (note: the RStudio interface is highly customisable, so your version might look slightly different)</span><a class="headerlink" href="#rstudio-start-screen" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="folder-structure-starting-files">
+<h2>3. Folder structure &amp; Starting files<a class="headerlink" href="#folder-structure-starting-files" title="Link to this heading">#</a></h2>
+<section id="navigating-and-executing-code-in-rstudio">
+<h3>3.1 Navigating and executing code in RStudio<a class="headerlink" href="#navigating-and-executing-code-in-rstudio" title="Link to this heading">#</a></h3>
+<p>Let’s now open RStudio and create a new R script. In this script, we will copy-paste the code from this website and execute it. To open a new R script, we can click the top-left button or press <code class="docutils literal notranslate"><span class="pre">shift</span> <span class="pre">+</span> <span class="pre">command</span> <span class="pre">+</span> <span class="pre">N</span></code> for MacOS and <code class="docutils literal notranslate"><span class="pre">shift</span> <span class="pre">+</span> <span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">N</span></code> for Windows and Linux.</p>
+<figure class="align-default" id="open-a-new-r-script">
+<img alt="_images/open_new_r_script.png" src="_images/open_new_r_script.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">: Screenshot to show how to open a new R script.</span><a class="headerlink" href="#open-a-new-r-script" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The first thing we need to do is to unzip the tarball (filename: <strong>japan_eDNA_bootcamp_files.tar.gz</strong>) to gain access to all the starting files. To do this, we need to point RStudio to our newly created folder (name: <code class="docutils literal notranslate"><span class="pre">bootcamp</span></code>) on our Desktop. Upon starting RStudio, the current working directory is set to the home folder. We can print the current working directory by typing the following code in the R script and execute it.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">getwd</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">getwd</span><span class="p">()</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;/Users/gjeunen&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>To execute the line of code, we can press the <code class="docutils literal notranslate"><span class="pre">Run</span></code> button on the top-right of the Source Editor screen or press <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">+</span> <span class="pre">return</span></code> on MacOS or <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">enter</span></code> on Windows and Linux. When the code is successfully executed, it will show in the Console window together with the raw output, which in this case is a string containing the information of the current working directory.</p>
+<figure class="align-default" id="execute-first-line-of-code">
+<img alt="_images/execute_first_line_of_code.png" src="_images/execute_first_line_of_code.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">: Executing our first line of R code!</span><a class="headerlink" href="#execute-first-line-of-code" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Navigating to our <code class="docutils literal notranslate"><span class="pre">bootcamp</span></code> folder on the Desktop can be done via two different ways in RStudio. The first is via the dedicated <code class="docutils literal notranslate"><span class="pre">Choose</span> <span class="pre">Directory...</span></code> button in the <code class="docutils literal notranslate"><span class="pre">Session</span></code> drop down window.</p>
+<figure class="align-default" id="choose-directory-in-rstudio">
+<img alt="_images/choose_directory_rstudio.png" src="_images/choose_directory_rstudio.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">: Navigating between directories in RStudio using the Session dropdown window.</span><a class="headerlink" href="#choose-directory-in-rstudio" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>However, preferrable is to use the <code class="docutils literal notranslate"><span class="pre">setwd()</span></code> function. So, let’s use that instead for this workshop. The <code class="docutils literal notranslate"><span class="pre">setwd()</span></code> function usually takes in a simple string, i.e., a line of text in between quotes. However, to make the code work cross-platform, we have to provide a couple of extra bits of information, as MacOS, Linux, and Windows use different file paths.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">setwd</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="nf">Sys.getenv</span><span class="p">(</span><span class="s">&quot;HOME&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Desktop&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bootcamp&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Wen executing the <code class="docutils literal notranslate"><span class="pre">getwd()</span></code> function again, we will see that the path has changed to our <code class="docutils literal notranslate"><span class="pre">bootcamp</span></code> folder.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">getwd</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">getwd</span><span class="p">()</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;/Users/gjeunen/Desktop/bootcamp&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>A final check to ensure we are in the correct folder, is to list the files within the current working directory. This should give us an output of our tarball file (filename: <strong>japan_eDNA_bootcamp_files.tar.gz</strong>).</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">list.files</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nb">list</span><span class="o">.</span><span class="n">files</span><span class="p">()</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;japan_eDNA_bootcamp_files.tar.gz&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>Now that we are in the correct folder, we can unzip the starting file to gain access to all files needed for completing the bioinformatic analysis.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">untar</span><span class="p">(</span><span class="s">&quot;japan_eDNA_bootcamp_files.tar.gz&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="folder-structure">
+<h3>3.2 Folder structure<a class="headerlink" href="#folder-structure" title="Link to this heading">#</a></h3>
+<p>Once the tarball is unzipped, we can have a look at the folder structure we will use during the workshop. For any project, it is important to organise your various files into subfolders. Throughout this course, we will be navigating between folders to run specific lines of code. It may seem confusing or tedious at first, especially as we will only be dealing with a few files during this workshop. However, remember that for many projects you can easily generate hundreds of intermediary files. So, it is best to start with good practices from the beginning.</p>
+<p>As we did earlier, we can use the <code class="docutils literal notranslate"><span class="pre">list.files()</span></code> function to print all the files in the directory. We can provide the parameter <code class="docutils literal notranslate"><span class="pre">include.dirs</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> to also print out all the subdirectories within our current working directory.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">list.files</span><span class="p">(</span><span class="n">include.dirs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nb">list</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="n">include</span><span class="o">.</span><span class="n">dirs</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="s2">&quot;0.metadata&quot;</span>                       <span class="s2">&quot;1.raw&quot;</span>                            <span class="s2">&quot;2.trimmed&quot;</span>                       
+<span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="s2">&quot;3.filtered&quot;</span>                       <span class="s2">&quot;4.results&quot;</span>                        <span class="s2">&quot;5.refdb&quot;</span>                         
+<span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="s2">&quot;6.phylotree&quot;</span>                      <span class="s2">&quot;japan_eDNA_bootcamp_files.tar.gz&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>We can see that RStudio prints the list of files and folders in columns to span the width of the Console window. However, sometimes it is easier to print results line-by-line. We can use the <code class="docutils literal notranslate"><span class="pre">writeLines()</span></code> function to accomplish this.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">writeLines</span><span class="p">(</span><span class="nf">list.files</span><span class="p">(</span><span class="n">include.dirs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">writeLines</span><span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="n">include</span><span class="o">.</span><span class="n">dirs</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">))</span>
+<span class="mf">0.</span><span class="n">metadata</span>
+<span class="mf">1.</span><span class="n">raw</span>
+<span class="mf">2.</span><span class="n">trimmed</span>
+<span class="mf">3.</span><span class="n">filtered</span>
+<span class="mf">4.</span><span class="n">results</span>
+<span class="mf">5.</span><span class="n">refdb</span>
+<span class="mf">6.</span><span class="n">phylotree</span>
+<span class="n">japan_eDNA_bootcamp_files</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="starting-files">
+<h3>3.3 Starting files<a class="headerlink" href="#starting-files" title="Link to this heading">#</a></h3>
+<p>While most folders are currently empty, as we will populate them with files during our analysis, some folders contain the necessary starting files for the analysis. We can provide one extra parameter to the previous code, i.e., <code class="docutils literal notranslate"><span class="pre">recursive</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>, to print out all subdirectories and files within them.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">writeLines</span><span class="p">(</span><span class="nf">list.files</span><span class="p">(</span><span class="n">recursive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">include.dirs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">writeLines</span><span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="n">recursive</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">include</span><span class="o">.</span><span class="n">dirs</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">))</span>
+<span class="mf">0.</span><span class="n">metadata</span>
+<span class="mf">0.</span><span class="n">metadata</span><span class="o">/</span><span class="n">sample_metadata</span><span class="o">.</span><span class="n">txt</span>
+<span class="mf">1.</span><span class="n">raw</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Akakina_1_S103_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Akakina_1_S103_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Akakina_2_S104_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Akakina_2_S104_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Akakina_3_S105_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Akakina_3_S105_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Asan_1_S108_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Asan_1_S108_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Asan_2_S109_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Asan_2_S109_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Asan_3_S110_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Asan_3_S110_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Ashiken_1_S124_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Ashiken_1_S124_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Ashiken_2_S125_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Ashiken_2_S125_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Ashiken_3_S126_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Ashiken_3_S126_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Edateku_1_S132_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Edateku_1_S132_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Edateku_2_S133_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Edateku_2_S133_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Edateku_3_S134_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Edateku_3_S134_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">FieldControl_112122_S106_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">FieldControl_112122_S106_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">FieldControl_112222_S143_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">FieldControl_112222_S143_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">FieldControl_112422_S141_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">FieldControl_112422_S141_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">FilterControl_112122_S107_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">FilterControl_112122_S107_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">FilterControl_112222_S144_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">FilterControl_112222_S144_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">FilterControl_112422_S142_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">FilterControl_112422_S142_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Gamo_1_S111_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Gamo_1_S111_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Gamo_2_S112_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Gamo_2_S112_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Gamo_3_S113_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Gamo_3_S113_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Heda_1_S135_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Heda_1_S135_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Heda_2_S136_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Heda_2_S136_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Heda_3_S137_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Heda_3_S137_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Imaizaki_1_S121_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Imaizaki_1_S121_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Imaizaki_2_S122_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Imaizaki_2_S122_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Imaizaki_3_S123_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Imaizaki_3_S123_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Kurasaki_1_S117_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Kurasaki_1_S117_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Kurasaki_2_S118_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Kurasaki_2_S118_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Kurasaki_3_S119_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Kurasaki_3_S119_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Sakibaru_1_S114_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Sakibaru_1_S114_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Sakibaru_2_S115_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Sakibaru_2_S115_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Sakibaru_3_S116_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Sakibaru_3_S116_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Sani_1_S97_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Sani_1_S97_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Sani_2_S98_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Sani_2_S98_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Sani_3_S99_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Sani_3_S99_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Taen_1_S129_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Taen_1_S129_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Taen_2_S130_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Taen_2_S130_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Taen_3_S131_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Taen_3_S131_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Tatsugo_1_S100_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Tatsugo_1_S100_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Tatsugo_2_S101_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Tatsugo_2_S101_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Tatsugo_3_S102_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Tatsugo_3_S102_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Yadon_1_S138_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Yadon_1_S138_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Yadon_2_S139_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Yadon_2_S139_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Yadon_3_S140_R1_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">1.</span><span class="n">raw</span><span class="o">/</span><span class="n">Yadon_3_S140_R2_001</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">2.</span><span class="n">trimmed</span>
+<span class="mf">3.</span><span class="n">filtered</span>
+<span class="mf">4.</span><span class="n">results</span>
+<span class="mf">5.</span><span class="n">refdb</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">coi_blast</span><span class="o">.</span><span class="n">ndb</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">coi_blast</span><span class="o">.</span><span class="n">nhr</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">coi_blast</span><span class="o">.</span><span class="n">nin</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">coi_blast</span><span class="o">.</span><span class="n">nog</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">coi_blast</span><span class="o">.</span><span class="n">nos</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">coi_blast</span><span class="o">.</span><span class="ow">not</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">coi_blast</span><span class="o">.</span><span class="n">nsq</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">coi_blast</span><span class="o">.</span><span class="n">ntf</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">coi_blast</span><span class="o">.</span><span class="n">nto</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">coi_clean</span><span class="o">.</span><span class="n">txt</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">names</span><span class="o">.</span><span class="n">dmp</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">nodes</span><span class="o">.</span><span class="n">dmp</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">nucl_gb</span><span class="o">.</span><span class="n">accession2taxid</span><span class="o">.</span><span class="n">gz</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">taxdb</span><span class="o">.</span><span class="n">btd</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">taxdb</span><span class="o">.</span><span class="n">bti</span>
+<span class="mf">5.</span><span class="n">refdb</span><span class="o">/</span><span class="n">taxonomy4blast</span><span class="o">.</span><span class="n">sqlite3</span>
+<span class="mf">6.</span><span class="n">phylotree</span>
+<span class="n">japan_eDNA_bootcamp_files</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+</div>
+<p>The output shows that we have a single sample metadata file, 90 zipped sequence files, and a formatted reference database. We will provide more details on each file in the following sections.</p>
+<p>For now, let’s save and close the current R script. We can save it as <code class="docutils literal notranslate"><span class="pre">navigation.R</span></code> in the current working directory <code class="docutils literal notranslate"><span class="pre">bootcamp</span></code>.</p>
+<p><strong>Now that we have everything set up, we can get started with the bioinformatic processing of our data!</strong></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Japan eDNA bootcamp 2025</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bioinformaticanalysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bioinformatic analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-file">1. Starting file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rstudio">2. RStudio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">2.1 Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rstudio-interface">2.2 The RStudio interface</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#folder-structure-starting-files">3. Folder structure &amp; Starting files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navigating-and-executing-code-in-rstudio">3.1 Navigating and executing code in RStudio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#folder-structure">3.2 Folder structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-files">3.3 Starting files</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gert-Jan Jeunen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025-2030.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

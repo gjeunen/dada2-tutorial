@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Statistical analysis &#8212; Japan eDNA bootcamp 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'statisticalanalysis';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Phylogenetic tree" href="phylogenetictree.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Japan eDNA bootcamp 2025 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Japan eDNA bootcamp 2025 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Japan eDNA bootcamp 2025
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setting up the environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bioinformaticanalysis.html">Bioinformatic analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taxonomyassignment.html">Taxonomy assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datacuration.html">Data curation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="phylogenetictree.html">Phylogenetic tree</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Statistical analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fstatisticalanalysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/statisticalanalysis.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Statistical analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-stats">2. Summary stats</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-and-asv-numbers">2.1 Read and ASV numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asv-exploration">2.2 ASV exploration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#taxa-exploration">2.3 Taxa exploration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alpha-diversity">3. Alpha diversity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-diversity">4. Beta diversity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-asvs-across-locations">4.1 Visualise ASVs across locations</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="statistical-analysis">
+<h1>Statistical analysis<a class="headerlink" href="#statistical-analysis" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>During this section, we will cover some common statistical analyses that are conducted in eDNA metabarcoding research. The statistical tests employed can vary widely and will mainly depend on the experimental design and research questions. Due to the breadth of statistical tests and the specificity based on the experimental design, we will be providing more of an introduction to the statistical analysis whereby we will focus on some key concepts, rather than providing a full breakdown of the statistical analysis of metabarcoding data.</p>
+<p>Before we start with the statistical analysis, it is essential to keep an overview of the experimental design of our data. For the larger study, we want to examine how fish community composition changes across a latitudinal gradient in Japan, with particular interest in assessing evidence for tropicalisation, i.e., the poleward spread of tropical species due to ocean warming. For this tutorial dataset, we have water samples collected at various sites across Amami island, covering 2 distinct regions (north and south). The north region consists of 6 sampling locations, including Akakina, Asan, Imaizaki, Kurasaki, Sakibaru, and Sani. The south region consists of 5 sampling locations, including Ashiken, Edateku, Heda, Taen, and Yadon. Within each sampling location, 3 water samples were collected.</p>
+<p>All of this means that we have 3 eDNA samples per location and 11 locations = 33 samples.</p>
+<p>For the statistical comparison, we could investigate differences between all locations with samples as replicates. We could also generate a semi-quantitative dataset through an incidence-based approach by combining water samples within a location and compare the north region vs. the south region.</p>
+</section>
+<section id="summary-stats">
+<h2>2. Summary stats<a class="headerlink" href="#summary-stats" title="Link to this heading">#</a></h2>
+<section id="read-and-asv-numbers">
+<h3>2.1 Read and ASV numbers<a class="headerlink" href="#read-and-asv-numbers" title="Link to this heading">#</a></h3>
+<p>One of the first things we will do is to generate some numbers summarising the data. This information is usually provided in the first couple of paragraphs of the results section in a metabarcoding manuscript. Stats that are frequently included are total read count prior and post quality filtering, the average read number per sample and per group, as well as the minimum and maximum values, the number of ASVs, the most abundant and most frequently detected ASVs, read count and ASV number in negative controls, sample drop out, etc.</p>
+<p>Most of these numbers have been reported in the previous sections, so I suggest going back to the respective section to look them up if needed. There are, however, a few additional numbers we can report on now that we have the finalised tables.</p>
+<p>First, let’s prepare the R environment and read in the necessary data. For this, we will open a new R script and save it as <strong>statistical_analysis.R</strong> in the <code class="docutils literal notranslate"><span class="pre">bootcamp</span></code> directory.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## set up the working environment</span>
+<span class="nf">setwd</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="nf">Sys.getenv</span><span class="p">(</span><span class="s">&quot;HOME&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Desktop&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bootcamp&quot;</span><span class="p">))</span>
+<span class="nf">list.files</span><span class="p">()</span>
+
+<span class="c1">## load necessary R packages</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">pkg</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;car&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;viridis&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;UpSetR&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="n">pkg</span><span class="p">,</span><span class="w"> </span><span class="n">character.only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w"> </span><span class="nf">install.packages</span><span class="p">(</span><span class="n">pkg</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">library</span><span class="p">(</span><span class="n">pkg</span><span class="p">,</span><span class="w"> </span><span class="n">character.only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="n">pkg</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;version:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="nf">packageVersion</span><span class="p">(</span><span class="n">pkg</span><span class="p">)),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">## read data into R</span>
+<span class="n">metadata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;metadata_filtered.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;\t&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">check.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">comment.char</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="p">)</span>
+<span class="n">count_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;count_table_filtered.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;\t&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">check.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">comment.char</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="p">)</span>
+<span class="n">taxonomy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;taxonomy_filtered.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;\t&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">check.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">comment.char</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>One of the first things we can report on is the total number of reads and number of detected ASVs. We can easily do this by summing the values in the count table, as well as printing the number of rows in the count table, respectively.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## total number of reads and ASVs</span>
+<span class="nf">sum</span><span class="p">(</span><span class="n">count_table</span><span class="p">)</span>
+<span class="nf">nrow</span><span class="p">(</span><span class="n">count_table</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nb">sum</span><span class="p">(</span><span class="n">count_table</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">2993896</span>
+<span class="o">&gt;</span> <span class="n">nrow</span><span class="p">(</span><span class="n">count_table</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">1695</span>
+</pre></div>
+</div>
+</div>
+<p>Here, we can see that the final number of reads included in our count table is 2,993,896 reads and the final number of ASVs is equal to 1,695.</p>
+<p>Next, we can determine the average number of reads per sample, as well as the standard error. For interest, we can look into the minimum and maximum values as well.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## average number of reads per sample</span>
+<span class="n">metadata</span><span class="o">$</span><span class="n">final_read_count</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colSums</span><span class="p">(</span><span class="n">count_table</span><span class="p">)[</span><span class="nf">rownames</span><span class="p">(</span><span class="n">metadata</span><span class="p">)]</span>
+<span class="nf">mean</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_read_count</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">sd</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_read_count</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_read_count</span><span class="p">)))</span>
+<span class="nf">min</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_read_count</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">metadata</span><span class="p">)[</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_read_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_read_count</span><span class="p">)]</span>
+<span class="nf">max</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_read_count</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">metadata</span><span class="p">)[</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_read_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_read_count</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; mean(metadata$final_read_count, na.rm = TRUE)
+[1] 90724.12
+&gt; sd(metadata$final_read_count, na.rm = TRUE) / sqrt(sum(!is.na(metadata$final_read_count)))
+[1] 5027.811
+&gt; min(metadata$final_read_count)
+[1] 52096
+&gt; rownames(metadata)[metadata$final_read_count == min(metadata$final_read_count)]
+[1] &quot;Sani_3&quot;
+&gt; max(metadata$final_read_count)
+[1] 161751
+&gt; rownames(metadata)[metadata$final_read_count == max(metadata$final_read_count)]
+[1] &quot;Asan_3&quot;
+</pre></div>
+</div>
+</div>
+<p>From the output, we can see that the average number of reads across all samples is 90,724 ± 5,028. The minimum number of reads (52,096) was observed for Sani_3, while the maximum number of reads (161,751) was observed for Asan_3.</p>
+<p>Next, we can investigate the same numbers for ASVs as well.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## average number of ASVs per sample</span>
+<span class="n">metadata</span><span class="o">$</span><span class="n">final_asv_count</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colSums</span><span class="p">(</span><span class="n">count_table</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)[</span><span class="nf">rownames</span><span class="p">(</span><span class="n">metadata</span><span class="p">)]</span>
+<span class="nf">mean</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_asv_count</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">sd</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_asv_count</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_asv_count</span><span class="p">)))</span>
+<span class="nf">min</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_asv_count</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">metadata</span><span class="p">)[</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_asv_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_asv_count</span><span class="p">)]</span>
+<span class="nf">max</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_asv_count</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">metadata</span><span class="p">)[</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_asv_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">final_asv_count</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; mean(metadata$final_asv_count, na.rm = TRUE)
+[1] 359.0303
+&gt; sd(metadata$final_asv_count, na.rm = TRUE) / sqrt(sum(!is.na(metadata$final_asv_count)))
+[1] 17.35287
+&gt; min(metadata$final_asv_count)
+[1] 188
+&gt; rownames(metadata)[metadata$final_asv_count == min(metadata$final_asv_count)]
+[1] &quot;Akakina_3&quot;
+&gt; max(metadata$final_asv_count)
+[1] 521
+&gt; rownames(metadata)[metadata$final_asv_count == max(metadata$final_asv_count)]
+[1] &quot;Heda_3&quot;
+</pre></div>
+</div>
+</div>
+<p>Here, we can see that the average number of ASVs per sample is 359 ± 17. The lowest number of ASVs (188) was observed in Akakina_3, while the maximum number of ASVs (521) was observed for Heda_3.</p>
+<p>Besides read and ASV count per sample, it might also be of interest to group the data per sampling location.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## average number of reads and ASVs per location</span>
+<span class="n">location_info</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">metadata</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">sampleLocation</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">summarise</span><span class="p">(</span><span class="n">mean_reads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">final_read_count</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="n">se_reads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sd</span><span class="p">(</span><span class="n">final_read_count</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">n</span><span class="p">()),</span>
+<span class="w">            </span><span class="n">mean_asvs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">final_asv_count</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="n">se_asvs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sd</span><span class="p">(</span><span class="n">final_asv_count</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">n</span><span class="p">()))</span>
+
+<span class="c1"># reads info</span>
+<span class="nf">min</span><span class="p">(</span><span class="n">location_info</span><span class="o">$</span><span class="n">mean_reads</span><span class="p">)</span>
+<span class="n">location_info</span><span class="o">$</span><span class="n">sampleLocation</span><span class="p">[</span><span class="n">location_info</span><span class="o">$</span><span class="n">mean_reads</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">location_info</span><span class="o">$</span><span class="n">mean_reads</span><span class="p">)]</span>
+<span class="nf">max</span><span class="p">(</span><span class="n">location_info</span><span class="o">$</span><span class="n">mean_reads</span><span class="p">)</span>
+<span class="n">location_info</span><span class="o">$</span><span class="n">sampleLocation</span><span class="p">[</span><span class="n">location_info</span><span class="o">$</span><span class="n">mean_reads</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">location_info</span><span class="o">$</span><span class="n">mean_reads</span><span class="p">)]</span>
+
+<span class="c1"># ASV info</span>
+<span class="nf">min</span><span class="p">(</span><span class="n">location_info</span><span class="o">$</span><span class="n">mean_asvs</span><span class="p">)</span>
+<span class="n">location_info</span><span class="o">$</span><span class="n">sampleLocation</span><span class="p">[</span><span class="n">location_info</span><span class="o">$</span><span class="n">mean_asvs</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">location_info</span><span class="o">$</span><span class="n">mean_asvs</span><span class="p">)]</span>
+<span class="nf">max</span><span class="p">(</span><span class="n">location_info</span><span class="o">$</span><span class="n">mean_asvs</span><span class="p">)</span>
+<span class="n">location_info</span><span class="o">$</span><span class="n">sampleLocation</span><span class="p">[</span><span class="n">location_info</span><span class="o">$</span><span class="n">mean_asvs</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">location_info</span><span class="o">$</span><span class="n">mean_asvs</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; min(location_info$mean_reads)
+[1] 63703
+&gt; location_info$sampleLocation[location_info$mean_reads == min(location_info$mean_reads)]
+[1] &quot;Sani&quot;
+&gt; max(location_info$mean_reads)
+[1] 139100.3
+&gt; location_info$sampleLocation[location_info$mean_reads == max(location_info$mean_reads)]
+[1] &quot;Asan&quot;
+&gt; # ASV info
+&gt; min(location_info$mean_asvs)
+[1] 216
+&gt; location_info$sampleLocation[location_info$mean_asvs == min(location_info$mean_asvs)]
+[1] &quot;Akakina&quot;
+&gt; max(location_info$mean_asvs)
+[1] 477.3333
+&gt; location_info$sampleLocation[location_info$mean_asvs == max(location_info$mean_asvs)]
+[1] &quot;Sani&quot;
+</pre></div>
+</div>
+</div>
+<p>The output here shows us that the lowest average number of reads (63,703) and ASVs (216) were observed in Sani and Akakina, respectively, while the highest average number of reads (139,100) and ASVs (477) were observed in Asan and Sani, respectively.</p>
+</section>
+<section id="asv-exploration">
+<h3>2.2 ASV exploration<a class="headerlink" href="#asv-exploration" title="Link to this heading">#</a></h3>
+<p>Besides read count and ASV count per sample, we can also investigate the most abundant (with regards to read count) and most frequently detected (occurrence count) ASVs. First, let’s add those data (total read count and occurrence count) into new columns in the taxonomy dataframe.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## ASV exploration</span>
+<span class="c1"># add total read count and occurrence count to taxonomy</span>
+<span class="n">taxonomy</span><span class="o">$</span><span class="n">final_read_count</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rowSums</span><span class="p">(</span><span class="n">count_table</span><span class="p">)[</span><span class="nf">rownames</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">)]</span>
+<span class="n">taxonomy</span><span class="o">$</span><span class="n">pct_reads</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">taxonomy</span><span class="o">$</span><span class="n">final_read_count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">count_table</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="n">taxonomy</span><span class="o">$</span><span class="n">occurrence_count</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rowSums</span><span class="p">(</span><span class="n">count_table</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)[</span><span class="nf">rownames</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">)]</span>
+<span class="n">taxonomy</span><span class="o">$</span><span class="n">pct_occurrence</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">taxonomy</span><span class="o">$</span><span class="n">occurrence_count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">count_table</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, let’s investigate the 10 most abundant and frequently detected ASVs by subsetting the taxonomy dataframe</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># top 10 abundant ASVs</span>
+<span class="n">abundant_asvs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">taxonomy</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">slice_max</span><span class="p">(</span><span class="n">final_read_count</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">with_ties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># top 10 frequent ASVs</span>
+<span class="n">frequent_asvs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">taxonomy</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">slice_max</span><span class="p">(</span><span class="n">occurrence_count</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">with_ties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When investigating these dataframes, we can see that our data is dominated by ASV_1 (974,368 reads; 32.55%) and ASV_2 (842,055 reads; 28.13%) with regards to read count, taking up a total of 1,816,423 (60.68%) reads. The remaining 8 most abundant ASVs (ASV_3, ASV_8, ASV_5, ASV_7, ASV_14, ASV_9, ASV_15, and ASV_41) only take up a combined 368,573 reads or 12.31% within our data. When looking at the taxonomy assignment for ASV_1 and ASV_2, we can see that they are assigned to two different species within the same genus, i.e., <em>Micromonas commoda</em> and <em>Micromonas pusilla</em>. Micromonas is a widespread, very small-sized, prasinophyta alga that makes up a significant amount of picoplanktonic biomass and productivity in both oceanic and coastal regions. Hence, the abundance of these signals is not unsurprising, given live Micromonas organisms were likely captured on the filter, extracted, amplified using a universal COI primer set, and sequenced. The high abundance of picoplankton in COI metabarcoding data from water samples has been observed frequently and is one of the drawbacks of using a universal primer set that co-amplifies these organisms.</p>
+<p>For the most frequently detected ASVs, we can see from the dataframe that we have 26 (1.53%) ASVs that were detected in all samples, including the two most abundant ASVs (ASV_1 and ASV_2). When looking at the taxonomic classifications of these 26 ASVs, we can see that, besides the two Micromonas species, we also detected an ascidian (<em>Ascidia ahodori</em>), and two other phytoplankton species (<em>Phaeocystis globosa</em> and <em>Pelagomonas calceolata</em>). The remaining ASVs only have poorly supported taxonomic classifications (i.e., BLAST percent identity and coverage values below 90) and, hence, are not reliable.</p>
+</section>
+<section id="taxa-exploration">
+<h3>2.3 Taxa exploration<a class="headerlink" href="#taxa-exploration" title="Link to this heading">#</a></h3>
+<p>When using universal primer sets for metabarcoding research, it is a common occurrence that some percentage of ASVs will be unclassified or receive a low-quality BLAST-hit. To investigate the quality of the BLAST-hits we received for our ASVs in this tutorial data, let’s plot the distribution of the percent identity values (note: BLAST is a local alignment, for which we set a threshold of query coverage to 50%, it might be needed to use global alignment values for a more accurate representation of this plot).</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## Taxa exploration</span>
+<span class="c1"># generate density plot for BLAST-hits</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pident</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">geom_density</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#377EB8&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#377EB8&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">adjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_vline</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray40&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_vline</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">95</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#806491&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span><span class="w"> </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray90&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Density Distribution of BLAST-hits&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Percent Identity&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Density&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_y_continuous</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expansion</span><span class="p">(</span><span class="n">mult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotate</span><span class="p">(</span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">Inf</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.05</span><span class="p">,</span>
+<span class="w">           </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;Species cutoff (100%):\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">taxonomy</span><span class="o">$</span><span class="n">pident</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="s">&quot; (&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                          </span><span class="nf">round</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">taxonomy</span><span class="o">$</span><span class="n">pident</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%)&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray40&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">annotate</span><span class="p">(</span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">95</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">Inf</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.05</span><span class="p">,</span>
+<span class="w">           </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;BLAST cutoff (95%):\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">taxonomy</span><span class="o">$</span><span class="n">pident</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">95</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="s">&quot; (&quot;</span><span class="p">,</span>
+<span class="w">                          </span><span class="nf">round</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">taxonomy</span><span class="o">$</span><span class="n">pident</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">95</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%)&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#806491&quot;</span><span class="p">)</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;blast_hit_distribution.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">last_plot</span><span class="p">(),</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="blast-hit-distribution">
+<img alt="_images/blast_hit_distribution.png" src="_images/blast_hit_distribution.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 67 </span><span class="caption-text">: The distribution of the percentage identity values of the BLAST hits.</span><a class="headerlink" href="#blast-hit-distribution" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The figure shows us that we have 123 (7.26%) ASVs with a 100% percent identity BLAST hit and, therefore, could be potentially assigned to species level (though query coverage will need to be taken into account for this as well). Furthermore, when we set a cutoff threshold of 95% for percent identity of BLAST hits, we see that we can assign a taxonomic ID to 301 or 17.76% of ASVs.</p>
+<p>Let’s explore these high quality BLAST-hits a bit further. For this tutorial, we will subset the data for ASVs reaching a percent identity BLAST-hit of 100% and query coverage of at least 98%.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># subset high quality BLAST-hits</span>
+<span class="n">taxonomy_species</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">taxonomy</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">pident</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">qcov</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">98</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When subsetting the data based on percent identity and query coverage, we see that only 117 ASVs are included. We can now subset the count table as well, and reformat it, so that we can plot a simple stacked bar plot containing the read abundance of each species. Since we have over 100 taxa, it will be better to colour the bars based on a higher taxonomic level (we’ll use phylum in our case), and reorder or sort the bars based on the total number of reads to that higher taxonomic level.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">count_species</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">count_table</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">.</span><span class="p">)</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">taxonomy_species</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">taxonomy_species</span><span class="o">$</span><span class="n">`matching species IDs`</span><span class="p">,</span><span class="w"> </span><span class="n">phylum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">taxonomy_species</span><span class="o">$</span><span class="n">phylum</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">phylum</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">pivot_longer</span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">phylum</span><span class="p">),</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;count&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">phylum</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">total_reads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">count</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ungroup</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">phylum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">reorder</span><span class="p">(</span><span class="n">phylum</span><span class="p">,</span><span class="w"> </span><span class="n">total_reads</span><span class="p">))</span>
+
+<span class="c1"># plot raw bar graph</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">count_species</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phylum</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_col</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;stack&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Count&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Phylum&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;species_raw_bar.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">last_plot</span><span class="p">(),</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w">  </span>
+</pre></div>
+</div>
+<figure class="align-default" id="species-raw-bar">
+<img alt="_images/species_raw_bar.png" src="_images/species_raw_bar.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 68 </span><span class="caption-text">: An unformatted stacked bar chart showing read count abundance of phyla.</span><a class="headerlink" href="#species-raw-bar" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Since the number of sequences differ between samples, it might sometimes be easier to use relative abundances to visualise the data.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot rel abund bar graph</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">count_species</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phylum</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_col</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fill&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Count&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Phylum&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;species_rel_abund_bar.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">last_plot</span><span class="p">(),</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<figure class="align-default" id="species-rel-abund-bar">
+<img alt="_images/species_rel_abund_bar.png" src="_images/species_rel_abund_bar.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 69 </span><span class="caption-text">: An unformatted relative abundant stacked bar chart showing read count abundance of phyla.</span><a class="headerlink" href="#species-rel-abund-bar" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>While we can start to see that most samples show a similar pattern, except for Heda_1, sometimes it is easier to group the samples to reduce the number of bars in the plot.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># combine samples per location</span>
+<span class="n">metadata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">metadata</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">.</span><span class="p">))</span>
+<span class="n">count_location</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">count_species</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">left_join</span><span class="p">(</span><span class="n">metadata</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">phylum</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">summarise</span><span class="p">(</span><span class="n">total_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">count</span><span class="p">),</span><span class="w"> </span><span class="n">.groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;drop&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">phylum</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">total_reads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">total_count</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ungroup</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">phylum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">reorder</span><span class="p">(</span><span class="n">phylum</span><span class="p">,</span><span class="w"> </span><span class="n">total_reads</span><span class="p">))</span>
+
+<span class="c1"># plot rel abund bar location</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">count_location</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_count</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phylum</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_col</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fill&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Location&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Relative Abundance&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Phylum&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;location_rel_abund_bar.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">last_plot</span><span class="p">(),</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<figure class="align-default" id="location-rel-abund-bar">
+<img alt="_images/location_rel_abund_bar.png" src="_images/location_rel_abund_bar.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 70 </span><span class="caption-text">: An unformatted relative abundant stacked bar chart showing read count abundance of phyla per location.</span><a class="headerlink" href="#location-rel-abund-bar" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>As you can see, the graphs are easier to interpret when grouped by location, due to the limited number of stacked bars. The high abundance of Chlorophyta, however, is potentially still masking any differences between samples. Furthermore, it might also sstill be difficult to identify which phyla or species are occurring in only one sampling location, due to the number of species detected and the number of colours used. One “trick” we can employ, is to plot the data per phylum or species for all locations. For the tutorial, we will generate the plot per phylum for easy viewing (note: we use the <code class="docutils literal notranslate"><span class="pre">scales</span> <span class="pre">=</span> <span class="pre">&quot;free_y&quot;</span></code> option to eliminate the issue of the highly abundant Chlorophyta phylum). To generate the species plot, simply change <code class="docutils literal notranslate"><span class="pre">facet_wrap(~phylum,</span> <span class="pre">scales</span> <span class="pre">=</span> <span class="pre">&quot;free_y&quot;)</span></code> to <code class="docutils literal notranslate"><span class="pre">facet_wrap(~species,</span> <span class="pre">scales</span> <span class="pre">=</span> <span class="pre">&quot;free_y&quot;)</span></code>.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot per phylum for easy visualisation</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">count_location</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_count</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;dodge&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;identity&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_viridis</span><span class="p">(</span><span class="n">discrete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;E&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Graphing data per phylum&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">phylum</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;free_y&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;top&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;per_phylum_bar.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">last_plot</span><span class="p">(),</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<figure class="align-default" id="per-phylum-bar">
+<img alt="_images/per_phylum_bar.png" src="_images/per_phylum_bar.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 71 </span><span class="caption-text">: A formatted bar chart showing phyla abundance per location.</span><a class="headerlink" href="#per-phylum-bar" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Interestingly, when plotting the relative abundance, we will indirectly transform the data to presence-absence, which will aid significantly in distinguishing presence or absence for phyla between sampling locations.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot rel abund per phylum for easy visualisation</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">count_location</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_count</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;fill&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;identity&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_viridis</span><span class="p">(</span><span class="n">discrete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;E&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Graphing data per phylum&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">phylum</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;free_y&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;top&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;per_phylum_rel_abund_bar.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">last_plot</span><span class="p">(),</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<figure class="align-default" id="per-phylum-rel-abund-bar">
+<img alt="_images/per_phylum_rel_abund_bar.png" src="_images/per_phylum_rel_abund_bar.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 72 </span><span class="caption-text">: A formatted bar chart showing phyla relative abundance per location.</span><a class="headerlink" href="#per-phylum-rel-abund-bar" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>From this plot, we can clearly se that the Chlorophyta, Haptophyta, Chordata, and Porifera phyla were detected at all locations.</p>
+<div class="tip admonition">
+<p class="admonition-title">Further exploration</p>
+<p>What we’ve shown thus far is, of course, only a very brief overview of some data exploration steps. We suggest you explore this data further at a more interesting taxonomic level compared to phylum, focus on species of interest, or to incorporate a larger proportion of the data by relaxing the BLAST-hit filtering thresholds we’ve used in this example.</p>
+</div>
+</section>
+</section>
+<section id="alpha-diversity">
+<h2>3. Alpha diversity<a class="headerlink" href="#alpha-diversity" title="Link to this heading">#</a></h2>
+<p>In short, alpha diversity is the characterisation of diversity within a site. Researchers use this characterisation to quantify how diverse different systems are. For metabarcoding data, which does not hold true abundance information as the corrleation between eDNA signal strenght and species abundance is weak at best, scientists mainly focus on the simplest approach, i.e., <strong>species richness</strong>. Species richness only considers the presence or absence of a species and disregards differentially weighing abundant and rare species.</p>
+<p>Within alpha diversity, metabarcoding studies primarily incorporate <strong>T</strong>axonomic <strong>D</strong>iversity (TD). However, by generating phylogenetic trees, as we’ve done in the last section, <strong>P</strong>hylogenetic <strong>D</strong>iversity (PD) can also be investigated. Recently, there has been a push to incorporate PD in metabarcoding studies, as intuitively, it makes much more sense that a community comprised of 20 birds within the same family is less diverse than 20 birds from different families. For more information on PD, we recommend these two publications from <a class="reference external" href="https://royalsocietypublishing.org/doi/epdf/10.1098/rstb.2017.0397">Kling et al., 2018</a> and <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13014">Alberdi &amp; Gilbert, 2019</a>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Hill numbers</p>
+<p>We also want to point you to the Hill number framework. Alpha diversity investigations of metabarcoding data can be significantly expanded using this single statistical framework that includes <strong>species richness</strong>, <strong>Shannon index</strong>, and <strong>Simpson index</strong>. This approach, however, requires metabarcoding data to be transformed using a so-called <strong>incidence-based</strong> approach. This approach works by transforming the data set to presence-absence and combining multiple samples from the same site/treatment to obtain the relative abundance information. For more information, we can have a look at the figure below. I also strongly suggest reading the excellent paper by <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13014">Alberdi &amp; Gilbert, 2019</a>, which covers all of this in much more detail and in context of a metabarcoding approach. They also provide all the essential citations of the original statistical framework development.</p>
+<figure class="align-default" id="hill-numbers-intro">
+<img alt="_images/hill_numbers_intro.png" src="_images/hill_numbers_intro.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 73 </span><span class="caption-text">: Introduction to the Hill number statistical framework. Copyright: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13014">Alberdi &amp; Gilbert, 2019</a>.</span><a class="headerlink" href="#hill-numbers-intro" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>It should be noted, however, that this data transformation requires an extra level of replication build into the experimental design. For our tutorial data, for example, we would need to transform a single sample to presence absence (0 for absence and 1 for presence). We, then, combine the three samples within a location to create the relative abundance measurement. For example, when an ASV is detected in 3 samples it will receive a value of 3, while a single detection of an ASV across all three samples will receive a value of 1. This approach, however, eliminates the current replication at the location level (we went from 3 replicates to 1 sample per location). If you’d be interested in comparing all locations, it would be statistically impossible due to the lack of replication, i.e., you would be comparing a single sample at each location with each other. A potential solution to this problem for our tutorial data since the locations are grouped into 2 regions, is to statistically compare the regions with each other, as the north region has 6 samples (locations) and south region has 5 samples (locations). If you would like to use this approach while still being able to compare all locations, it would require the collection of multiple grouped samples within a location. Hence, the extra level of replication required for this data transformation.</p>
+<figure class="align-default" id="incidence-based-transformation">
+<img alt="_images/incidence_based_transformation.png" src="_images/incidence_based_transformation.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 74 </span><span class="caption-text">: Introduction to incidence-based data transformation. Copyright: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13014">Alberdi &amp; Gilbert, 2019</a>.</span><a class="headerlink" href="#incidence-based-transformation" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="beta-diversity">
+<h2>4. Beta diversity<a class="headerlink" href="#beta-diversity" title="Link to this heading">#</a></h2>
+<p>Besides the number of species within a site (alpha diversity), species composition or beta diversity is another important aspect of analysis within metabarcoding research. To analyse species composition between sites, we can use ordination and cluster visualisations to depict sample/site/treatment similarity or dissimilarity. PERMANOVA and PERMDISP, on the other hand, are the statistical tests to investigate significant differences between treatments based on species composition between treatments. Lastly, Indicator Species Analysis (ISA) allows us to identify which signals are driving the difference between groups.</p>
+<p>Similar to alpha diversity, beta diversity can incorporate <strong>T</strong>axonomic <strong>D</strong>iversity, as well as <strong>P</strong>hylogenetic <strong>D</strong>iversity, something we’ll explore during this tutorial.</p>
+<section id="visualise-asvs-across-locations">
+<h3>4.1 Visualise ASVs across locations<a class="headerlink" href="#visualise-asvs-across-locations" title="Link to this heading">#</a></h3>
+<p>First, however, it is useful to visualise the overlap in ASV detection between the different locations. Traditionally, Venn diagrams have been used for this purpose. However, drawing Venn diagrams with 11 sections is impractical. Two alternative approaches to Venn diagrams when dealing with a larger number of sets (n &gt; 3) are <strong>UpSet diagrams</strong> and <strong>network graphs</strong>. <strong>UpSet diagrams</strong> are best for showing intersection sizes without drawing overlapping circles and works by using a matrix format with bars to represent intersection frequencies. To draw UpSet diagrams, we can make use of the <a class="reference external" href="https://github.com/hms-dbmi/UpSetR">UpSetR R package</a>. <strong>Network graphs</strong>, on the other hand, are best for highlighting shared elements between groups, whereby nodes are the groups (locations) and edges are the shared elements (ASVs) with thickness showing the overlap size. To draw network graphs, we can make use of the <a class="reference external" href="https://r.igraph.org/">igraph R package</a> and the <a class="reference external" href="https://ggraph.data-imaginist.com/">ggraph R package</a>.</p>
+<p>So, let’s generate these plots now to look at the shared and unique ASVs across locations.</p>
+<p>Before generating the plots, we need to reformat the data. In this case, we need to combine the metadata file with the count table, as we need to sum the samples by location (which will be our groups). Then, we will transform the data to presence-absence, as these graphs do not include information on ASV abundance or occurrence.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## Visualise shared/unique ASVs</span>
+<span class="c1"># combine metadata and count_table to group per location</span>
+<span class="n">location_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">count_table</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">.</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">left_join</span><span class="p">(</span><span class="n">metadata</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">sampleLocation</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">summarise</span><span class="p">(</span><span class="nf">across</span><span class="p">(</span><span class="o">-</span><span class="n">sample</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">.x</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">column_to_rownames</span><span class="p">(</span><span class="s">&quot;sampleLocation&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">t</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Next, we can call the <code class="docutils literal notranslate"><span class="pre">upset()</span></code> function in the <a class="reference external" href="https://github.com/hms-dbmi/UpSetR">UpSetR R package</a>. To keep things tidy, we will only show the 30 most abundant intersections (more on this after we have generated the graph) using the <code class="docutils literal notranslate"><span class="pre">nintersects</span> <span class="pre">=</span> <span class="pre">30</span></code> parameter. Please note that we are only showing the default plot and many customisations are possible. For more information, I suggest you read the help documentation (<code class="docutils literal notranslate"><span class="pre">?upset()</span></code>) of the package.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualise through UpSet</span>
+<span class="nf">upset</span><span class="p">(</span><span class="n">location_table</span><span class="p">,</span><span class="w"> </span><span class="n">nsets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">11</span><span class="p">,</span><span class="w"> </span><span class="n">nintersects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">order.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;freq&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">text.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span>
+<span class="w">      </span><span class="n">mainbar.y.label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Number of ASVs&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sets.x.label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Total number of ASVs&quot;</span><span class="p">)</span>
+<span class="nf">png</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;upset.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;in&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span>
+<span class="nf">upset</span><span class="p">(</span><span class="n">location_table</span><span class="p">,</span><span class="w"> </span><span class="n">nsets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">11</span><span class="p">,</span><span class="w"> </span><span class="n">nintersects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">order.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;freq&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">text.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span>
+<span class="w">      </span><span class="n">mainbar.y.label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Number of ASVs&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sets.x.label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Total number of ASVs&quot;</span><span class="p">)</span>
+<span class="nf">dev.off</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default" id="upset">
+<img alt="_images/upset.png" src="_images/upset.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 75 </span><span class="caption-text">: UpSet graph visualising shared/unique ASVs across locations.</span><a class="headerlink" href="#upset" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>This graph contains several subplots, so let’s go over them in detail to help interpret UpSet plots. On the bottom left-hand side, we have the total number of ASVs per location represented as a bar graph. On the top right-hand side, we have the number of ASVs that belong to an intersection represented as a bar graph (only the 30 most abundant intersections are displayed). In the bottom right-hand side, we have the intersections, i.e., to which locations this belongs. For example, in our data set, the most abundant intersection consists of 220 ASVs only belonging to Sani (only coloured dot) and are not found in any other location. 100 ASVs, on the other hand, which is the second most abundant intersection, are found in all 11 locations (all 11 points are coloured).</p>
+<p>From this graph, we can clearly see that, while there is a large number of ASVs that are shared between locations, there is also a large number of ASVs that are only present in a single location.</p>
+<p>To generate a <strong>network graph</strong>, we have to reformat the data once again. First, we need to calculate the number of shared ASVs between locations and place these values in a matrix.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualise through network graph</span>
+<span class="c1"># compute shared ASVs between locations</span>
+<span class="n">shared_asvs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">location_table</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">location_table</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we need to generate a network graph object from this matrix.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># create network graph</span>
+<span class="n">net</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">graph_from_adjacency_matrix</span><span class="p">(</span><span class="n">shared_asvs</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;undirected&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">weighted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, we can generate the plot.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># circular layout with optimized spacing</span>
+<span class="nf">ggraph</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;linear&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">circular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_edge_arc</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;steelblue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">strength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_node_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#E1F5FE&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">21</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stroke</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_node_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="p">((</span><span class="o">-</span><span class="nf">node_angle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">90</span><span class="p">)</span><span class="w"> </span><span class="o">%%</span><span class="w"> </span><span class="m">180</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">90</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;outward&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;outward&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">repel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_edge_width</span><span class="p">(</span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Shared ASVs&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_size_continuous</span><span class="p">(</span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Degree&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_void</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bottom&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">coord_fixed</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;off&quot;</span><span class="p">)</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;network_graph.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">last_plot</span><span class="p">(),</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<figure class="align-default" id="network-graph">
+<img alt="_images/network_graph.png" src="_images/network_graph.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 76 </span><span class="caption-text">: Network graph visualising shared/unique ASVs across locations.</span><a class="headerlink" href="#network-graph" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In this circular network graph, the dots represent the 11 sampling locations and the lines represent the connectedness between locations, with width and color linked to the number of ASVs shared.</p>
+<p>From this graph, we can see the differing overlap in number of ASVs between locations. However, this plot is also impacted by the total number of ASVs within a location (look at how Akakina, the location with fewest total ASVs, also looks like the least shared ASVs). Finally, this plot also loses the information on unique ASVs, as only shared ASVs are taken into account in this plot.</p>
+<p>To include unique ASVs, we can generate a so-called <strong>bipartite network graph</strong>, where we have two types of nodes, one for location and one for ASVs. We can, then, plot the lines to which ASV is linked to which location. For this graph, we need to slightly reformat the data again.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># reformat data for Bipartite Network Graph</span>
+<span class="n">edge_list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">location_table</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">rownames_to_column</span><span class="p">(</span><span class="s">&quot;ASV&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">pivot_longer</span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">ASV</span><span class="p">,</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Location&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Present&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">Present</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">Present</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we can create the network graph object again and plot the graph.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># create network</span>
+<span class="n">net</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">graph_from_data_frame</span><span class="p">(</span><span class="n">edge_list</span><span class="p">,</span><span class="w"> </span><span class="n">directed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+
+<span class="c1"># assign node types and scale</span>
+<span class="nf">V</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">$</span><span class="n">type</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">V</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">location_table</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Location&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ASV&quot;</span><span class="p">)</span>
+<span class="nf">V</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">$</span><span class="n">degree</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">degree</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+
+<span class="c1"># visualise using bipartite network graph</span>
+<span class="nf">ggraph</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fr&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_edge_link</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gray80&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_node_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">degree</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">type</span><span class="p">),</span><span class="w"> </span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_node_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">type</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Location&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">repel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Location&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;steelblue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ASV&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;grey40&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_size</span><span class="p">(</span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_void</span><span class="p">()</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bipartite_network_graph.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">last_plot</span><span class="p">(),</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<figure class="align-default" id="bipartite-network-graph">
+<img alt="_images/bipartite_network_graph.png" src="_images/bipartite_network_graph.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 77 </span><span class="caption-text">: Bipartite network graph visualising shared/unique ASVs across locations.</span><a class="headerlink" href="#bipartite-network-graph" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>This plot is a bit difficult to visualise due to the large number of ASVs, but we can clearly see that the Sano location separates in the bipartite network graph, due to the large number of unique ASVs.</p>
+<div class="tip admonition">
+<p class="admonition-title">Optimise bipartite network graph</p>
+<p>To further optimise the bipartite network graph, we could combine all ASVs that share the same location. For example, rather than 220 ASVs unique to Sano, you could have a single node, with a line represented by a weight of 220.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="phylogenetictree.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Phylogenetic tree</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-stats">2. Summary stats</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-and-asv-numbers">2.1 Read and ASV numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asv-exploration">2.2 ASV exploration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#taxa-exploration">2.3 Taxa exploration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alpha-diversity">3. Alpha diversity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-diversity">4. Beta diversity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-asvs-across-locations">4.1 Visualise ASVs across locations</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Gert-Jan Jeunen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025-2030.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
