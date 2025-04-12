@@ -26,7 +26,7 @@ setwd(file.path(Sys.getenv("HOME"), "Desktop", "bootcamp"))
 list.files()
 
 ## load necessary R packages
-for (pkg in c("tidyverse", "ggplot2", "car", "viridis", "UpSetR")) {
+for (pkg in c("tidyverse", "ggplot2", "car", "viridis", "UpSetR", "igraph", "ggraph", "scales", "ape")) {
   if (!require(pkg, character.only = TRUE)) install.packages(pkg)
   library(pkg, character.only = TRUE)
   cat(pkg, "version:", as.character(packageVersion(pkg)), "\n")
@@ -36,6 +36,7 @@ for (pkg in c("tidyverse", "ggplot2", "car", "viridis", "UpSetR")) {
 metadata <- read.table(file.path("4.results", "metadata_filtered.txt"), header = TRUE, sep = '\t', row.names = 1, check.names = FALSE, comment.char = '')
 count_table <- read.table(file.path("4.results", "count_table_filtered.txt"), header = TRUE, sep = '\t', row.names = 1, check.names = FALSE, comment.char = '')
 taxonomy <- read.table(file.path("4.results", "taxonomy_filtered.txt"), header = TRUE, sep = '\t', row.names = 1, check.names = FALSE, comment.char = '')
+phylo_tree <- read.nexus(file.path("6.phylotree", "asvs_aligned-tree.tree"))
 ```
 
 One of the first things we can report on is the total number of reads and number of detected ASVs. We can easily do this by summing the values in the count table, as well as printing the number of rows in the count table, respectively.
@@ -157,7 +158,6 @@ location_info$sampleLocation[location_info$mean_asvs == max(location_info$mean_a
 [1] 139100.3
 > location_info$sampleLocation[location_info$mean_reads == max(location_info$mean_reads)]
 [1] "Asan"
-> # ASV info
 > min(location_info$mean_asvs)
 [1] 216
 > location_info$sampleLocation[location_info$mean_asvs == min(location_info$mean_asvs)]

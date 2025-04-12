@@ -1,6 +1,6 @@
 # Japan eDNA bootcamp 2025
 
-Welcome to the environmental DNA (eDNA) bootcamp help at the University of the Ryukyus!
+Welcome to the environmental DNA (eDNA) bootcamp held at the University of the Ryukyus!
 
 The primary goal of this course is to introduce you to the analysis of metabarcoding sequence data, with a specific focus on environmental DNA or eDNA, and ultimately make you comfortable to explore your own next-generation sequencing data. The sessions are split up into three days, with the bioinformatic analysis on Wednesday 16 April, taxonomic assignment and data curation on Thursday 17 April, and statistical analysis and visualisations on Friday 18 April. At the end of the three days, we hope you will be able to understand and execute the main steps in a bioinformatic pipeline, build your own custom reference database, assign a taxonomic ID to your sequences using different algorithms, further curate your data, and analyse data in a statistically correct manner.
 
