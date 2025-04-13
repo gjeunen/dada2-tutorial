@@ -1039,6 +1039,12 @@ Yadon    0.9165883 0.5794008 0.5055263 0.3561178 0.0017924 0.0057842 0.5805514 0
 ```
 ````
 
+```{figure} betadisper.png
+:name: betadisper
+
+: Boxplot showing difference in sample dispersion in ordination space between locations.
+```
+
 From the PERMDISP analysis, we can see that we have a slightly significant result. Hence, we cannot say that our PERMANOVA was significant due to point placement. Furthermore, we need to be careful with interpreting the PERMANOVA results, as one of the assumptions (equal dispersal) was violated.
 
 ### 4.5 Indicator Species Analysis
