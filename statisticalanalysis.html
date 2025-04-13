@@ -376,9 +376,19 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#taxa-exploration">2.3 Taxa exploration</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alpha-diversity">3. Alpha diversity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alpha-diversity">3. Alpha diversity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1 Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pd-and-sr">3.2 PD and SR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">3.3 Visualisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#significance-testing">3.4 Significance testing</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-diversity">4. Beta diversity</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-asvs-across-locations">4.1 Visualise ASVs across locations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ordination-analysis-pcoa">4.2 Ordination analysis (PCoA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permanova">4.3 PERMANOVA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permdisp">4.4 PERMDISP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indicator-species-analysis">4.5 Indicator Species Analysis</a></li>
 </ul>
 </li>
 </ul>
@@ -413,7 +423,9 @@ document.write(`
 <span class="nf">list.files</span><span class="p">()</span>
 
 <span class="c1">## load necessary R packages</span>
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">pkg</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;car&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;viridis&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;UpSetR&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;igraph&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ggraph&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;scales&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ape&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">pkg</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;car&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;viridis&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;UpSetR&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;igraph&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ggraph&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">              </span><span class="s">&quot;scales&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ape&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;picante&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;patchwork&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MASS&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;performance&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">              </span><span class="s">&quot;emmeans&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;multcomp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ggrepel&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ggforce&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;indicspecies&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="n">pkg</span><span class="p">,</span><span class="w"> </span><span class="n">character.only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w"> </span><span class="nf">install.packages</span><span class="p">(</span><span class="n">pkg</span><span class="p">)</span>
 <span class="w">  </span><span class="nf">library</span><span class="p">(</span><span class="n">pkg</span><span class="p">,</span><span class="w"> </span><span class="n">character.only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 <span class="w">  </span><span class="nf">cat</span><span class="p">(</span><span class="n">pkg</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;version:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="nf">packageVersion</span><span class="p">(</span><span class="n">pkg</span><span class="p">)),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
@@ -650,7 +662,7 @@ document.write(`
 <span class="n">metadata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">metadata</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">.</span><span class="p">))</span>
 <span class="n">count_location</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">count_species</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">  </span><span class="nf">left_join</span><span class="p">(</span><span class="n">metadata</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">left_join</span><span class="p">(</span><span class="n">metadata</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">phylum</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">summarise</span><span class="p">(</span><span class="n">total_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">count</span><span class="p">),</span><span class="w"> </span><span class="n">.groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;drop&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">phylum</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
@@ -718,8 +730,10 @@ document.write(`
 </section>
 <section id="alpha-diversity">
 <h2>3. Alpha diversity<a class="headerlink" href="#alpha-diversity" title="Permalink to this heading">#</a></h2>
-<p>In short, alpha diversity is the characterisation of diversity within a site. Researchers use this characterisation to quantify how diverse different systems are. For metabarcoding data, which does not hold true abundance information as the corrleation between eDNA signal strenght and species abundance is weak at best, scientists mainly focus on the simplest approach, i.e., <strong>species richness</strong>. Species richness only considers the presence or absence of a species and disregards differentially weighing abundant and rare species.</p>
-<p>Within alpha diversity, metabarcoding studies primarily incorporate <strong>T</strong>axonomic <strong>D</strong>iversity (TD). However, by generating phylogenetic trees, as we’ve done in the last section, <strong>P</strong>hylogenetic <strong>D</strong>iversity (PD) can also be investigated. Recently, there has been a push to incorporate PD in metabarcoding studies, as intuitively, it makes much more sense that a community comprised of 20 birds within the same family is less diverse than 20 birds from different families. For more information on PD, we recommend these two publications from <a class="reference external" href="https://royalsocietypublishing.org/doi/epdf/10.1098/rstb.2017.0397">Kling et al., 2018</a> and <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13014">Alberdi &amp; Gilbert, 2019</a>.</p>
+<section id="id1">
+<h3>3.1 Introduction<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>In short, alpha diversity is the characterisation of diversity within a site. Researchers use this characterisation to quantify how diverse different systems are. For metabarcoding data, which does not hold true abundance information as the corrleation between eDNA signal strenght and species abundance is weak at best, scientists mainly focus on the simplest approach, i.e., <strong>species richness</strong>. Unlike for example Shannon or Simpson, species richness only considers the presence or absence of a species and disregards differentially weighing abundant and rare species.</p>
+<p>Within alpha diversity, metabarcoding studies primarily incorporate <strong>T</strong>axonomic <strong>D</strong>iversity (TD). However, by generating phylogenetic trees, as we’ve done in the last section, <strong>P</strong>hylogenetic <strong>D</strong>iversity (PD) can also be investigated. Recently, there has been a push to incorporate PD in metabarcoding studies. While TD is the most quantified measure of diversity, it gives an incomplete information befause the evolutionary history underlying spatial patterns is ignored. Since many decades, scientists have recognised that many ecological patterns are processes not independent of the evolution of the lineages involved in generating these patterns. Hence, the push to include PD in metabarcoding studies. For more information on PD, we recommend these two publications from <a class="reference external" href="https://royalsocietypublishing.org/doi/epdf/10.1098/rstb.2017.0397">Kling et al., 2018</a> and <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13014">Alberdi &amp; Gilbert, 2019</a>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Hill numbers</p>
 <p>We also want to point you to the Hill number framework. Alpha diversity investigations of metabarcoding data can be significantly expanded using this single statistical framework that includes <strong>species richness</strong>, <strong>Shannon index</strong>, and <strong>Simpson index</strong>. This approach, however, requires metabarcoding data to be transformed using a so-called <strong>incidence-based</strong> approach. This approach works by transforming the data set to presence-absence and combining multiple samples from the same site/treatment to obtain the relative abundance information. For more information, we can have a look at the figure below. I also strongly suggest reading the excellent paper by <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13014">Alberdi &amp; Gilbert, 2019</a>, which covers all of this in much more detail and in context of a metabarcoding approach. They also provide all the essential citations of the original statistical framework development.</p>
@@ -738,6 +752,298 @@ document.write(`
 </figure>
 </div>
 </section>
+<section id="pd-and-sr">
+<h3>3.2 PD and SR<a class="headerlink" href="#pd-and-sr" title="Permalink to this heading">#</a></h3>
+<p>When investigating Phylogenetic alpha Diversity (PD), it is important to check the phylogenetic tree before starting and ensure it is properly formatted. We can use the <a class="reference external" href="https://emmanuelparadis.github.io">ape</a> and <a class="reference external" href="https://github.com/skembel/picante">picante</a> R packages for this, which are the core packages for hypothesis testing in ecophylogenetics. The first check we can conduct is to determine if the tree if fully resolved or if polytomies (i.e., more than two ASVs originating from the same node in a tree; or an unresolved clade) are present. It is important to check this, as some phylogenetic analyses are not able to handle polytomies. We can use the <code class="docutils literal notranslate"><span class="pre">is.binary()</span></code> function in <strong>ape</strong>.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## Alpha diversity</span>
+<span class="c1"># format data to fit the analysis</span>
+<span class="nf">is.binary</span><span class="p">(</span><span class="n">phylo_tree</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="ow">is</span><span class="o">.</span><span class="n">binary</span><span class="p">(</span><span class="n">phylo_tree</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">TRUE</span>
+</pre></div>
+</div>
+</div>
+<p>From the output, we can see that our phylogenetic tree is indeed fully resolved. If this were not the case for your data, you can use the <code class="docutils literal notranslate"><span class="pre">multi2d()</span></code> function to randomly resolve polytomies.</p>
+<p>The next check before proceeding to our analysis, is to ensure that bot hthe community (count table) and phylogenetic data (phylogenetic tree) match. For this, the names of the tips should match the ASV names in the dataset. This also means that ASVs present in one dataset should not be absent in the other. First, we need to transpose our count table for formatting purposes. Then, we can use the <code class="docutils literal notranslate"><span class="pre">all()</span></code> base R function to check if the names are the same between the count table and the phylogenetic tree.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">alpha_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">count_table</span><span class="p">))</span>
+<span class="nf">all</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="n">phylo_tree</span><span class="o">$</span><span class="n">tip.label</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">sort</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">alpha_table</span><span class="p">)))</span>
+<span class="nf">all</span><span class="p">(</span><span class="n">phylo_tree</span><span class="o">$</span><span class="n">tip.label</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">alpha_table</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; all(sort(phylo_tree$tip.label) == sort(colnames(alpha_table)))
+[1] TRUE
+&gt; all(phylo_tree$tip.label == colnames(alpha_table))
+[1] FALSE
+</pre></div>
+</div>
+</div>
+<p>The output shows us that while all names are matching, they aren’t correctly ordered at the moment. To match our count table and phylogenetic tree, we can use the <code class="docutils literal notranslate"><span class="pre">match.phylo.comm()</span></code> function from the <strong>picante</strong> R package.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">phylo_tree_clean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">match.phylo.comm</span><span class="p">(</span><span class="n">phy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phylo_tree</span><span class="p">,</span><span class="w"> </span><span class="n">comm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alpha_table</span><span class="p">)</span><span class="o">$</span><span class="n">phy</span>
+<span class="n">alpha_table_clean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">match.phylo.comm</span><span class="p">(</span><span class="n">phy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phylo_tree</span><span class="p">,</span><span class="w"> </span><span class="n">comm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alpha_table</span><span class="p">)</span><span class="o">$</span><span class="n">comm</span>
+<span class="nf">all</span><span class="p">(</span><span class="n">phylo_tree_clean</span><span class="o">$</span><span class="n">tip.label</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">alpha_table_clean</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; all(phylo_tree_clean$tip.label == colnames(alpha_table_clean))
+[1] TRUE
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">all()</span></code> check after data matching tells us that we are ready for calculating Species Richness (or number of ASVs) and Phylogenetic Diversity (PD). In today’s tutorial, we will be using the <a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/0006320792912013">Faith’s PD metric</a>, a simple method to measure evolutionary diversity by summing the branch length of all co-occurring species in a given site, from the tips to the root of the phylogenetic tree. Higher Faith’s PD values are calculated for communities that have more evolutionary divergent taxa and an older history, while lower Faith’s PD values represent assemblages that have taxa with a more recent evolutionary history. We can calculate Faith’s PD using the <code class="docutils literal notranslate"><span class="pre">pd()</span></code> function in the <strong>picante</strong> R package. This function will also return the SR values we need for TD.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate Faith&#39;s PD and species richness (SR)</span>
+<span class="n">alpha.PD</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">pd</span><span class="p">(</span><span class="n">samp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alpha_table_clean</span><span class="p">,</span><span class="w"> </span><span class="n">tree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phylo_tree_clean</span><span class="p">,</span><span class="w"> </span><span class="n">include.root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>One issue with Faith’s PD worth mentioning is the correlation with SR, i.e., higher total branch lengths are provided when more ASVs are present in a location. Hence, interpreting Faith’s PD across locations that have different SR can be complicated. While there are ways to overcome this, through randomisations and null models, this is outside the scope if this workshop but definitely worth checking out. For now, we can check the correlation using a Pearson’s correlation test and plotting SR against PD values.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># check SR and PD correlation</span>
+<span class="nf">cor.test</span><span class="p">(</span><span class="n">alpha.PD</span><span class="o">$</span><span class="n">PD</span><span class="p">,</span><span class="w"> </span><span class="n">alpha.PD</span><span class="o">$</span><span class="n">SR</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">alpha.PD</span><span class="o">$</span><span class="n">PD</span><span class="p">,</span><span class="w"> </span><span class="n">alpha.PD</span><span class="o">$</span><span class="n">SR</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;Phylogenetic Diversity&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;Species Richness&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Pearson&#39;s product-moment correlation
+
+data:  alpha.PD$PD and alpha.PD$SR
+t = 15.441, df = 31, p-value = 4.187e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.8823690 0.9705707
+sample estimates:
+      cor 
+0.9407124 
+</pre></div>
+</div>
+</div>
+<figure class="align-default" id="sr-pd-correlation">
+<img alt="_images/sr_pd_correlation.png" src="_images/sr_pd_correlation.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 75 </span><span class="caption-text">: Visualising the correlation between Species Richness and Faith’s PD.</span><a class="headerlink" href="#sr-pd-correlation" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="visualisation">
+<h3>3.3 Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this heading">#</a></h3>
+<p>For now, let’s visualise the differences in Faith’s PD and SR between locations using boxplots. First, we will have to merge the resulting SR and PD columns with the metadata.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># add PD and SR to metadata</span>
+<span class="n">metadata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span><span class="w"> </span><span class="n">alpha.PD</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;PD&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SR&quot;</span><span class="p">)],</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;row.names&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">all.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">metadata</span><span class="o">$</span><span class="n">Row.names</span>
+<span class="n">metadata</span><span class="o">$</span><span class="n">Row.names</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NULL</span>
+</pre></div>
+</div>
+<p>Next, we can generate the boxplots using ggplot2.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare for plotting</span>
+<span class="n">metadata</span><span class="o">$</span><span class="n">sampleLocation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                  </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Akakina&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Asan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Imaizaki&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Kurasaki&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sakibaru&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sani&quot;</span><span class="p">,</span>
+<span class="w">                                             </span><span class="s">&quot;Ashiken&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Edateku&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Heda&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Taen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Yadon&quot;</span><span class="p">))</span>
+<span class="n">metadata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">metadata</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span>
+<span class="w">    </span><span class="n">sampleLocation</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Tatsugo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sani&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gamo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Imaizaki&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Asan&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sakibaru&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Akakina&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Kurasaki&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;north&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sampleLocation</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Yadon&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Taen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ashiken&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Edateku&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Heda&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;south&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="kc">NA_character_</span><span class="p">))</span>
+<span class="n">metadata</span><span class="o">$</span><span class="n">region</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">region</span><span class="p">)</span>
+<span class="n">sample_colors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Akakina&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#EAE0DA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Asan&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#A0C3D2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ashiken&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#E7C8C0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Edateku&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#B5C7A4&quot;</span><span class="p">,</span>
+<span class="w">                   </span><span class="s">&quot;Gamo&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#D4BBDD&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Heda&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#F2D7A7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Imaizaki&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#A2D9D1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Kurasaki&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#DFA7A7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sakibaru&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#C5D0E6&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="s">&quot;Sani&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#D9C5A0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Taen&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#B7D9C4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Tatsugo&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#E3B7D1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Yadon&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#A8C6D9&quot;</span><span class="p">)</span>
+<span class="n">sample_shape</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;north&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">22</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;south&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">21</span><span class="p">)</span>
+
+<span class="c1"># generate the SR boxplot</span>
+<span class="n">boxplot.SR</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SR</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"> </span><span class="n">outlier.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">position_jitterdodge</span><span class="p">(</span><span class="n">jitter.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_colors</span><span class="p">,</span><span class="w"> </span><span class="n">guide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_shape_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_shape</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Region&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_alpha</span><span class="p">(</span><span class="n">guide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SR and PD alpha diversity boxplot&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">panel.grid.major.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span><span class="w"> </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;top&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span><span class="w"> </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">())</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">guides</span><span class="p">(</span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">guide_legend</span><span class="p">(</span><span class="n">override.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">)))</span>
+<span class="n">boxplot.SR</span>
+
+<span class="n">boxplot.PD</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PD</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"> </span><span class="n">outlier.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">position_jitterdodge</span><span class="p">(</span><span class="n">jitter.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_colors</span><span class="p">,</span><span class="w"> </span><span class="n">guide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_shape_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_shape</span><span class="p">,</span><span class="w"> </span><span class="n">guide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_alpha</span><span class="p">(</span><span class="n">guide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">panel.grid.major.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span><span class="w"> </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span>
+<span class="n">boxplot.PD</span>
+
+<span class="n">boxplots</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">boxplot.SR</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">boxplot.PD</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">plot_layout</span><span class="p">(</span><span class="n">guides</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;keep&quot;</span><span class="p">)</span>
+<span class="n">boxplots</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;alpha_boxplot.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">boxplots</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<figure class="align-default" id="alpha-boxplot">
+<img alt="_images/alpha_boxplot.png" src="_images/alpha_boxplot.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 76 </span><span class="caption-text">: Alpha diversity boxplots per location depicting Species Richness (SR) and Phylogenetic Diversity (Faith’s PD).</span><a class="headerlink" href="#alpha-boxplot" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>As mentioned before, we see a similar pattern between SR and PD, but more interestingly, we see quite big differences in alpha diversity between our locations. The highest alpha diversity is observed in Sani, while the lowest alpha diversity was observed in Akakina.</p>
+</section>
+<section id="significance-testing">
+<h3>3.4 Significance testing<a class="headerlink" href="#significance-testing" title="Permalink to this heading">#</a></h3>
+<p>To determine if there is a significant difference in alpha diversity, we can run a statistical test. For SR, which is count data, we can use a GLM to determine differences between locations. Since the data is overdispersed when using a Poisson distribution (code not shown), we will use the negative binomial model instead. First, we can run the model and check the assumptions.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># conduct negative binomial GLM to determine differences in SR between locations</span>
+<span class="c1"># fit negative binomial model</span>
+<span class="n">model_sr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm.nb</span><span class="p">(</span><span class="n">SR</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metadata</span><span class="p">)</span>
+
+<span class="c1"># check overdispersion</span>
+<span class="nf">check_overdispersion</span><span class="p">(</span><span class="n">model_sr</span><span class="p">)</span>
+
+<span class="c1"># check normality of residuals using QQ plot</span>
+<span class="nf">qqnorm</span><span class="p">(</span><span class="nf">resid</span><span class="p">(</span><span class="n">model_sr</span><span class="p">));</span><span class="w"> </span><span class="nf">qqline</span><span class="p">(</span><span class="nf">resid</span><span class="p">(</span><span class="n">model_sr</span><span class="p">))</span>
+
+<span class="c1"># check homogeneity of variance</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">model_sr</span><span class="p">,</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Overdispersion test</span>
+
+ <span class="n">dispersion</span> <span class="n">ratio</span> <span class="o">=</span> <span class="mf">0.945</span>
+          <span class="n">p</span><span class="o">-</span><span class="n">value</span> <span class="o">=</span> <span class="mf">0.928</span>
+
+<span class="n">No</span> <span class="n">overdispersion</span> <span class="n">detected</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<p>Once we verified all is good, we can print out the overall significance, as well as the pairwise comparison results. Additionally, we can make use of the <code class="docutils literal notranslate"><span class="pre">cld()</span></code> function in the <strong>multcomp</strong> R package to assign letters to each group, which can be added to the boxplot to show significant differences between locations.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># overall model significance</span>
+<span class="nf">Anova</span><span class="p">(</span><span class="n">model_sr</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;III&#39;</span><span class="p">)</span>
+
+<span class="c1"># post hoc pairwise comparisons</span>
+<span class="n">emmeans_sr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">model_sr</span><span class="p">,</span><span class="w"> </span><span class="n">pairwise</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">adjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tukey&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;response&quot;</span><span class="p">)</span>
+<span class="n">cld_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cld</span><span class="p">(</span><span class="n">emmeans_sr</span><span class="o">$</span><span class="n">emmeans</span><span class="p">,</span><span class="w"> </span><span class="n">Letters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">letters</span><span class="p">,</span><span class="w"> </span><span class="n">adjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fdr&quot;</span><span class="p">)</span>
+<span class="n">cld_results</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Analysis of Deviance Table (Type III tests)
+
+Response: SR
+               LR Chisq Df Pr(&gt;Chisq)    
+sampleLocation   80.217 10  4.552e-13 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+ sampleLocation response   SE  df asymp.LCL asymp.UCL .group
+ Akakina             216 19.8 Inf       167       280  a    
+ Sakibaru            251 22.7 Inf       194       324  ab   
+ Kurasaki            305 27.2 Inf       237       392   bc  
+ Ashiken             305 27.2 Inf       237       393   bc  
+ Imaizaki            315 28.0 Inf       245       405   bc  
+ Taen                375 33.0 Inf       292       481    cd 
+ Heda                389 34.2 Inf       303       499    cd 
+ Yadon               434 37.9 Inf       339       556     d 
+ Edateku             438 38.2 Inf       342       561     d 
+ Asan                445 38.8 Inf       348       570     d 
+ Sani                477 41.5 Inf       373       611     d 
+
+Confidence level used: 0.95 
+Conf-level adjustment: bonferroni method for 11 estimates 
+Intervals are back-transformed from the log scale 
+P value adjustment: fdr method for 55 tests 
+Tests are performed on the log scale 
+significance level used: alpha = 0.05 
+NOTE: If two or more means share the same grouping symbol,
+      then we cannot show them to be different.
+      But we also did not show them to be the same. 
+</pre></div>
+</div>
+</div>
+<p>The results show a highly significant difference in SR between locations, with locations mainly split into 3 groups, including a low SR (Akakina and Sakibaru), mid SR (Kurasaki, Ashiken, Imaizaki, Taen, and Heda), and high SR (Yadon, Edateku, Asan, and Sani).</p>
+<p>Since Faith’s PD is a continuous variable, we will use a linear model instead to determine significant differences between locations. Similar to SR, we will first fit the model and check the assumptions.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># conduct LM to determine differences in PD between locations</span>
+<span class="c1"># fit LM</span>
+<span class="n">model_pd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">PD</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metadata</span><span class="p">)</span>
+
+<span class="c1"># check normality of residuals</span>
+<span class="nf">shapiro.test</span><span class="p">(</span><span class="nf">resid</span><span class="p">(</span><span class="n">model_pd</span><span class="p">))</span>
+
+<span class="c1"># check normality of residuals using QQ plot</span>
+<span class="nf">qqnorm</span><span class="p">(</span><span class="nf">resid</span><span class="p">(</span><span class="n">model_pd</span><span class="p">));</span><span class="w"> </span><span class="nf">qqline</span><span class="p">(</span><span class="nf">resid</span><span class="p">(</span><span class="n">model_pd</span><span class="p">))</span>
+
+<span class="c1"># check homogeneity of variance</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">model_pd</span><span class="p">,</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="nf">bartlett.test</span><span class="p">(</span><span class="n">PD</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metadata</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Shapiro</span><span class="o">-</span><span class="n">Wilk</span> <span class="n">normality</span> <span class="n">test</span>
+
+<span class="n">data</span><span class="p">:</span>  <span class="n">resid</span><span class="p">(</span><span class="n">model_pd</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="mf">0.94115</span><span class="p">,</span> <span class="n">p</span><span class="o">-</span><span class="n">value</span> <span class="o">=</span> <span class="mf">0.07337</span>
+
+<span class="n">Bartlett</span> <span class="n">test</span> <span class="n">of</span> <span class="n">homogeneity</span> <span class="n">of</span> <span class="n">variances</span>
+
+<span class="n">data</span><span class="p">:</span>  <span class="n">PD</span> <span class="n">by</span> <span class="n">sampleLocation</span>
+<span class="n">Bartlett</span><span class="s1">&#39;s K-squared = 14.895, df = 10, p-value = 0.136</span>
+</pre></div>
+</div>
+</div>
+<p>All seems to be fine, though note the near-significance of the Shapiro-Wilk normality test. Hence, you could consider using a data transformation. For now, we’ll continue with printing the overall significance and pairwise comparisons.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># overall model significance</span>
+<span class="nf">Anova</span><span class="p">(</span><span class="n">model_pd</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;III&#39;</span><span class="p">)</span>
+
+<span class="c1"># post hoc pairwise comparisons</span>
+<span class="n">emmeans_pd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">model_pd</span><span class="p">,</span><span class="w"> </span><span class="n">pairwise</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">adjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tukey&quot;</span><span class="p">)</span>
+<span class="n">cld_pd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cld</span><span class="p">(</span><span class="n">emmeans_pd</span><span class="o">$</span><span class="n">emmeans</span><span class="p">,</span><span class="w"> </span><span class="n">Letters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">letters</span><span class="p">,</span><span class="w"> </span><span class="n">adjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fdr&quot;</span><span class="p">)</span>
+<span class="n">cld_pd</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Anova Table (Type III tests)
+
+Response: PD
+                Sum Sq Df F value    Pr(&gt;F)    
+(Intercept)    15728.3  1 62.8150 6.891e-08 ***
+sampleLocation 18016.4 10  7.1953 6.045e-05 ***
+Residuals       5508.6 22                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+ sampleLocation emmean   SE df lower.CL upper.CL .group
+ Akakina          72.4 9.14 22     43.5      101  a    
+ Sakibaru         84.7 9.14 22     55.8      114  ab   
+ Ashiken          91.0 9.14 22     62.1      120  abc  
+ Kurasaki         95.0 9.14 22     66.2      124  abc  
+ Imaizaki         99.6 9.14 22     70.7      128  abc  
+ Taen            110.0 9.14 22     81.2      139   bc  
+ Heda            115.6 9.14 22     86.7      144   bc  
+ Edateku         118.7 9.14 22     89.9      148    c  
+ Asan            120.6 9.14 22     91.7      149    c  
+ Yadon           123.9 9.14 22     95.1      153    c  
+ Sani            163.5 9.14 22    134.7      192     d 
+
+Confidence level used: 0.95 
+Conf-level adjustment: bonferroni method for 11 estimates 
+P value adjustment: fdr method for 55 tests 
+significance level used: alpha = 0.05 
+NOTE: If two or more means share the same grouping symbol,
+      then we cannot show them to be different.
+      But we also did not show them to be the same. 
+</pre></div>
+</div>
+</div>
+<p>Similar to SR, we have a highly significant result in alpha phylogenetic diversity between locations.</p>
+</section>
+</section>
 <section id="beta-diversity">
 <h2>4. Beta diversity<a class="headerlink" href="#beta-diversity" title="Permalink to this heading">#</a></h2>
 <p>Besides the number of species within a site (alpha diversity), species composition or beta diversity is another important aspect of analysis within metabarcoding research. To analyse species composition between sites, we can use ordination and cluster visualisations to depict sample/site/treatment similarity or dissimilarity. PERMANOVA and PERMDISP, on the other hand, are the statistical tests to investigate significant differences between treatments based on species composition between treatments. Lastly, Indicator Species Analysis (ISA) allows us to identify which signals are driving the difference between groups.</p>
@@ -752,7 +1058,7 @@ document.write(`
 <span class="n">location_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">count_table</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">as.data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">.</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">  </span><span class="nf">left_join</span><span class="p">(</span><span class="n">metadata</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">left_join</span><span class="p">(</span><span class="n">metadata</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">sampleLocation</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">summarise</span><span class="p">(</span><span class="nf">across</span><span class="p">(</span><span class="o">-</span><span class="n">sample</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">.x</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">column_to_rownames</span><span class="p">(</span><span class="s">&quot;sampleLocation&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
@@ -772,7 +1078,7 @@ document.write(`
 <figure class="align-default" id="upset">
 <img alt="_images/upset.png" src="_images/upset.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 75 </span><span class="caption-text">: UpSet graph visualising shared/unique ASVs across locations.</span><a class="headerlink" href="#upset" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 77 </span><span class="caption-text">: UpSet graph visualising shared/unique ASVs across locations.</span><a class="headerlink" href="#upset" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>This graph contains several subplots, so let’s go over them in detail to help interpret UpSet plots. On the bottom left-hand side, we have the total number of ASVs per location represented as a bar graph. On the top right-hand side, we have the number of ASVs that belong to an intersection represented as a bar graph (only the 30 most abundant intersections are displayed). In the bottom right-hand side, we have the intersections, i.e., to which locations this belongs. For example, in our data set, the most abundant intersection consists of 220 ASVs only belonging to Sani (only coloured dot) and are not found in any other location. 100 ASVs, on the other hand, which is the second most abundant intersection, are found in all 11 locations (all 11 points are coloured).</p>
@@ -805,7 +1111,7 @@ document.write(`
 <figure class="align-default" id="network-graph">
 <img alt="_images/network_graph.png" src="_images/network_graph.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 76 </span><span class="caption-text">: Network graph visualising shared/unique ASVs across locations.</span><a class="headerlink" href="#network-graph" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 78 </span><span class="caption-text">: Network graph visualising shared/unique ASVs across locations.</span><a class="headerlink" href="#network-graph" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>In this circular network graph, the dots represent the 11 sampling locations and the lines represent the connectedness between locations, with width and color linked to the number of ASVs shared.</p>
@@ -816,7 +1122,7 @@ document.write(`
 <span class="w">  </span><span class="nf">rownames_to_column</span><span class="p">(</span><span class="s">&quot;ASV&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">pivot_longer</span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">ASV</span><span class="p">,</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Location&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Present&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">Present</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">Present</span><span class="p">)</span>
+<span class="w">  </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">Present</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Next, we can create the network graph object again and plot the graph.</p>
@@ -825,7 +1131,7 @@ document.write(`
 
 <span class="c1"># assign node types and scale</span>
 <span class="nf">V</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">$</span><span class="n">type</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">V</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">location_table</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Location&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ASV&quot;</span><span class="p">)</span>
-<span class="nf">V</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">$</span><span class="n">degree</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">degree</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+<span class="nf">V</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">$</span><span class="n">degree</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">igraph</span><span class="o">::</span><span class="nf">degree</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
 
 <span class="c1"># visualise using bipartite network graph</span>
 <span class="nf">ggraph</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fr&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
@@ -841,7 +1147,7 @@ document.write(`
 <figure class="align-default" id="bipartite-network-graph">
 <img alt="_images/bipartite_network_graph.png" src="_images/bipartite_network_graph.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 77 </span><span class="caption-text">: Bipartite network graph visualising shared/unique ASVs across locations.</span><a class="headerlink" href="#bipartite-network-graph" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 79 </span><span class="caption-text">: Bipartite network graph visualising shared/unique ASVs across locations.</span><a class="headerlink" href="#bipartite-network-graph" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>This plot is a bit difficult to visualise due to the large number of ASVs, but we can clearly see that the Sano location separates in the bipartite network graph, due to the large number of unique ASVs.</p>
@@ -849,6 +1155,236 @@ document.write(`
 <p class="admonition-title">Optimise bipartite network graph</p>
 <p>To further optimise the bipartite network graph, we could combine all ASVs that share the same location. For example, rather than 220 ASVs unique to Sano, you could have a single node, with a line represented by a weight of 220.</p>
 </div>
+</section>
+<section id="ordination-analysis-pcoa">
+<h3>4.2 Ordination analysis (PCoA)<a class="headerlink" href="#ordination-analysis-pcoa" title="Permalink to this heading">#</a></h3>
+<p>Ordination is the multivariate analysis which aims to find gradients or changes in species composition across groups. Multivaraite species composition can be imaged as samples in multidimensional space, where every species represents its own axis. Because multidimensional space is not easy to disply, describe, or even imagine, it is worth reducing it into a few main dimensions while preserving the maximum information. In ordination space, objects that are closer together are more similar, and dissimilar objects are more separated from each other.</p>
+<p>There are multiple ordination methods available. Some of the most common ones are Principal Components Analysis (PCA), Principle Coordinates Analysis (PCoA), and Non-metric MultiDimensional Scaling (NMDS). Although many other ordination methods exist as well, including RDA (Redundancy Analysis), CAP (Canonical Analysis of Principle coordinates), and dbRDA (Distance Cased Redundancy Analysis) The choice of ordination methods depends on (1) the type of data and (2) the similarity distance matrix you intend to use. Some methods, such as PCA are restricted to using Euclidean distance matrices, while NMDS and PCoA are able to use any distance matrix. The choice of distance matrix, is usually dependent on the type of data. For metabarcoding data, which contains lots of null values, Bray-Curtis (abundance or relative abundance) and Jaccard (presence-absence) are frequently chosen. Both these options are non-euclidean distances, which is why most metabarcoding studies opt for PCoA and NMDS ordination methods. For more information about ordination, please visit this <a class="reference external" href="https://www.davidzeleny.net/anadat-r/doku.php/en:ordination">blog</a> or this <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.13536">review article</a>.</p>
+<p>For this tutorial, we will focus on Principal Coordinates Analysis or PCoA, which is a frequently used method in metabarcoding studies. PCoA is also known as Multi-Dimensional Scaling (MDS) and aims to preserve the original pairwise distances as closely as possible while transforming the data into low-dimensional space. PCoA is a metric technique, thereby assuming a linear relationship between the original distances and the distances in the ordination space. If the distance measure used is Euclidean, PCoA is identical to PCA.</p>
+<p>First things first, since read count doesn’t necessarily portray species abundance, let’s transform our data to presence absence. We can use the <code class="docutils literal notranslate"><span class="pre">alpha_table_clean</span></code> dataframe, as this is already matching with the <code class="docutils literal notranslate"><span class="pre">phylo_tree_clean</span></code> object.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## ordination analysis (PCoA)</span>
+<span class="c1"># transform alpha_table_clean to presence absence</span>
+<span class="n">beta_table_clean_pa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">((</span><span class="n">alpha_table_clean</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we need to calculate the distance matrices we will use for our ordination. For PD, we will choose the Unweighted UniFrac distance implemented in the <code class="docutils literal notranslate"><span class="pre">unifrac()</span></code> function from the <strong>picante</strong> R package. For TD, we will use the Jaccard distance, as this fits well with the presence absence data transformation. We can use the <code class="docutils literal notranslate"><span class="pre">vegdist()</span></code> function in the <strong>vegan</strong> R package.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## calculate the uniFrac and Jaccard distance matrices</span>
+<span class="n">total_unifrac_distance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">unifrac</span><span class="p">(</span><span class="n">beta_table_clean_pa</span><span class="p">,</span><span class="w"> </span><span class="n">phylo_tree_clean</span><span class="p">)</span>
+<span class="n">total_jaccard_distance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">vegdist</span><span class="p">(</span><span class="n">beta_table_clean_pa</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jaccard&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, we can perform the PCoA ordination on both distance matrices. We can use the <code class="docutils literal notranslate"><span class="pre">wcmdscale()</span></code> function in the <strong>vegan</strong> R package for this step.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## perform PCoA ordination on both distance matrices</span>
+<span class="n">total_unifrac_pcoa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">wcmdscale</span><span class="p">(</span><span class="nf">as.dist</span><span class="p">(</span><span class="n">total_unifrac_distance</span><span class="p">),</span><span class="w"> </span><span class="n">eig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">total_jaccard_pcoa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">wcmdscale</span><span class="p">(</span><span class="nf">as.dist</span><span class="p">(</span><span class="n">total_jaccard_distance</span><span class="p">),</span><span class="w"> </span><span class="n">eig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Identical PD and TD code</p>
+<p>Note that from here onwards, the code will be identical between the PD and TD datasets. For conciseness, we will only continue with the PD dataset. Howevever, if you would like to analyse the TD dataset, all you would need to do is to change the <code class="docutils literal notranslate"><span class="pre">unifrac</span></code> portion of the variable name to <code class="docutils literal notranslate"><span class="pre">jaccard</span></code>.</p>
+</div>
+<p>Once we have conducted the ordination, we can have a look at the eignevalues. Eigenvalues represent the amount of variation explained by each axis or dimension in the ordination plot. The larger the eigenvalue, the more important that axis is in capturing the variability in the original data. We can plot a Scree plot to visualise the importance of each axis in our data set.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## generate scree plots</span>
+<span class="n">total_unifrac_eigen</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">Inertia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_unifrac_pcoa</span><span class="o">$</span><span class="n">eig</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">total_unifrac_pcoa</span><span class="o">$</span><span class="n">eig</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">Axes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq_along</span><span class="p">(</span><span class="n">total_unifrac_pcoa</span><span class="o">$</span><span class="n">eig</span><span class="p">))</span>
+<span class="n">total_unifrac_scree</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_unifrac_eigen</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">Axes</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Inertia</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;identity&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_classic</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">xlab</span><span class="p">(</span><span class="s">&#39;Axes&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">ylab</span><span class="p">(</span><span class="s">&#39;Inertia %&#39;</span><span class="p">)</span>
+<span class="n">total_unifrac_scree</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;scree.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_unifrac_scree</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="scree">
+<img alt="_images/scree.png" src="_images/scree.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 80 </span><span class="caption-text">: The Scree plot providing information about the percentage of variation explained on each axis.</span><a class="headerlink" href="#scree" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>From the plot, we can see that there are a couple of axes that explain a large amount of the variation, followed by a tail end of axis explaining only a low amount of the variation. This is a typical pattern observed in metabarcoding data ordination. While ordination plots, which we’ll generate next, mainly focus on the first 2 axes, our Scree plot shows that investigating the 3rd axis could be interesting as well, given it still explains a large part of the variation in the dataset.</p>
+<p>Once we have the Scree plot and investigated the axes, it is time to format the data and generate the ordination graph.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## format data for plotting</span>
+<span class="n">total_unifrac_coords</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">total_unifrac_pcoa</span><span class="o">$</span><span class="n">points</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">])</span>
+<span class="n">total_unifrac_coords</span><span class="o">$</span><span class="n">sample</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">total_unifrac_coords</span><span class="p">)</span>
+<span class="n">total_unifrac_coords</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="n">total_unifrac_coords</span><span class="p">,</span><span class="w"> </span><span class="n">metadata</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;sample&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">all.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1">## generate 2D ordination plots</span>
+<span class="n">centroids</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">Dim1</span><span class="p">,</span><span class="w"> </span><span class="n">Dim2</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_unifrac_coords</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">FUN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">)</span>
+<span class="n">total_unifrac_ordi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">total_unifrac_coords</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dim1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dim2</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_mark_ellipse</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;mm&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">stroke</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_text_repel</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">centroids</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">fontface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="n">box.padding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">segment.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PCoA Axis 1 (&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">total_unifrac_pcoa</span><span class="o">$</span><span class="n">eig</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">total_unifrac_pcoa</span><span class="o">$</span><span class="n">eig</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;%)&#39;</span><span class="p">),</span>
+<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PCoA Axis 2 (&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">total_unifrac_pcoa</span><span class="o">$</span><span class="n">eig</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">total_unifrac_pcoa</span><span class="o">$</span><span class="n">eig</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;%)&#39;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_colors</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_colors</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bottom&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">())</span>
+<span class="n">total_unifrac_ordi</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="s">&quot;4.results&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ordination.png&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_unifrac_ordi</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<figure class="align-default" id="ordination">
+<img alt="_images/ordination.png" src="_images/ordination.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 81 </span><span class="caption-text">: The PCoA plot whereby shapes provide information about the region (north vs south) and colour indicates sampling location. 95% confidence ellipses are drawn around each location.</span><a class="headerlink" href="#ordination" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>From the ordination plot, we can clearly see a split in the north region samples with the south region samples along the primary axis explaining 18.83% of the variation in the data. Furthermore, Sani separates on the secondary axis from all other samples, which makes sense when we think back about our alpha diversity observations where this site showed a significant increased SR and Faith’s PD compared to other samples.</p>
+</section>
+<section id="permanova">
+<h3>4.3 PERMANOVA<a class="headerlink" href="#permanova" title="Permalink to this heading">#</a></h3>
+<p>While ordination is a great way to visualise differences in species community composition between samples, it does not provide a p-value to determine if those differences are significant. To check if the differences between groups are significant, we can run a PERMANOVA or PERmutational Multivariate Analysis of VAriance. The PERMANOVA procedure works by using permutation testing. Here’s a basic outline of how it works:</p>
+<ol class="arabic simple">
+<li><p>Data Setup: You have a dataset with multiple variables (multivariate) and multiple groups or conditions.</p></li>
+<li><p>Dissimilarity Matrix: A dissimilarity matrix is created based on the multivariate data. This matrix quantifies the dissimilarity or distance between individual observations within the dataset (here you could pick what matrix you would like to use, in our example we are using a unweighted UniFrac matrix as we are investigating PD).</p></li>
+<li><p>Permutation Testing: PERMANOVA works by shuffling the group labels (permuting) and then recalculating the dissimilarity matrix and relevant statistical tests. This process is repeated many times to create a distribution of test statistics under the assumption that the group labels have no effect on the data.</p></li>
+<li><p>Comparison to Observed Data: The observed test statistic (usually a sum of squares or sums of squared distances) is then compared to the distribution of test statistics generated through permutation testing. This comparison helps determine the likelihood of observing the observed test statistic if the group labels have no effect.</p></li>
+<li><p>P-Value Calculation: The p-value is calculated as the proportion of permuted test statistics that are more extreme than the observed test statistic. A low p-value indicates that the observed differences between groups are unlikely to occur by random chance alone.</p></li>
+<li><p>Interpretation: If the p-value is below a pre-defined significance level (e.g., 0.05), you can then conclude that there are statistically significant differences between the groups based on the multivariate data.</p></li>
+</ol>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## conduct PERMANOVA, pairwiseAdonis, and PERMDISP for statistical analysis of beta-diversity</span>
+<span class="nf">adonis2</span><span class="p">(</span><span class="n">total_unifrac_distance</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">sampleLocation</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metadata</span><span class="p">,</span><span class="w"> </span><span class="n">permutations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10000</span><span class="p">,</span><span class="w"> </span><span class="n">strata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metadata</span><span class="o">$</span><span class="n">region</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Permutation test for adonis under reduced model
+Blocks:  strata 
+Permutation: free
+Number of permutations: 10000
+
+adonis2(formula = total_unifrac_distance ~ sampleLocation, data = metadata, permutations = 10000, strata = metadata$region)
+         Df SumOfSqs      R2      F    Pr(&gt;F)    
+Model    10   3.2902 0.63422 3.8146 9.999e-05 ***
+Residual 22   1.8975 0.36578                     
+Total    32   5.1877 1.00000                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></div>
+</div>
+</div>
+<p>The results show us that we have a highly significant result for our PERMANVA analysis. A PERMANOVA analysis, however, can provide significant p-values in three instances, including:</p>
+<ol class="arabic simple">
+<li><p>the centroids of the groups are placed differently in ordination space (i.e., we see that samples are spaced out in the ordination plot), or</p></li>
+<li><p>the dispersion of points between groups is different (i.e., some samples within a location cluster more closely together than others in the ordination plot), or</p></li>
+<li><p>both.</p></li>
+</ol>
+</section>
+<section id="permdisp">
+<h3>4.4 PERMDISP<a class="headerlink" href="#permdisp" title="Permalink to this heading">#</a></h3>
+<p>To verify if our PERMANOVA analysis is significant due to point placement in ordination space, we have to exclude the other option (point dispersal). We can use the PERMDISP test to exclude a significant PERMANOVA due to point dispersal, as it provides a significant p-value only when points are dispersed differently between groups within the ordination space.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">permutest</span><span class="p">(</span><span class="nf">betadisper</span><span class="p">(</span><span class="nf">as.dist</span><span class="p">(</span><span class="n">total_unifrac_distance</span><span class="p">),</span><span class="w"> </span><span class="n">metadata</span><span class="o">$</span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">permutations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10000</span><span class="p">)</span>
+<span class="nf">permutest</span><span class="p">(</span><span class="nf">betadisper</span><span class="p">(</span><span class="nf">as.dist</span><span class="p">(</span><span class="n">total_unifrac_distance</span><span class="p">),</span><span class="w"> </span><span class="n">metadata</span><span class="o">$</span><span class="n">sampleLocation</span><span class="p">),</span><span class="w"> </span><span class="n">permutations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10000</span><span class="p">,</span><span class="w"> </span><span class="n">pairwise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="nf">betadisper</span><span class="p">(</span><span class="nf">as.dist</span><span class="p">(</span><span class="n">total_unifrac_distance</span><span class="p">),</span><span class="w"> </span><span class="n">metadata</span><span class="o">$</span><span class="n">sampleLocation</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; permutest(betadisper(as.dist(total_unifrac_distance), metadata$sampleLocation), permutations = 10000)
+
+Permutation test for homogeneity of multivariate dispersions
+Permutation: free
+Number of permutations: 10000
+
+Response: Distances
+          Df   Sum Sq   Mean Sq      F N.Perm Pr(&gt;F)  
+Groups    10 0.034349 0.0034349 2.1148  10000 0.0178 *
+Residuals 22 0.035732 0.0016242                       
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+&gt; permutest(betadisper(as.dist(total_unifrac_distance), metadata$sampleLocation), permutations = 10000, pairwise = TRUE)
+
+Permutation test for homogeneity of multivariate dispersions
+Permutation: free
+Number of permutations: 10000
+
+Response: Distances
+          Df   Sum Sq   Mean Sq      F N.Perm Pr(&gt;F)  
+Groups    10 0.034349 0.0034349 2.1148  10000 0.0133 *
+Residuals 22 0.035732 0.0016242                       
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Pairwise comparisons:
+(Observed p-value below diagonal, permuted p-value above diagonal)
+           Akakina      Asan  Imaizaki  Kurasaki  Sakibaru      Sani   Ashiken   Edateku      Heda      Taen  Yadon
+Akakina            0.6357364 0.6453355 0.4788521 0.0091991 0.0188981 0.6239376 0.0663934 0.2092791 0.7999200 0.9348
+Asan     0.5690470           0.3991601 0.3035696 0.0366963 0.0533947 0.9643036 0.3036696 0.1744826 0.8815118 0.6359
+Imaizaki 0.5863010 0.3831860           0.8888111 0.0937906 0.1404860 0.4158584 0.0596940 0.2527747 0.5800420 0.5564
+Kurasaki 0.4410672 0.3056426 0.8620902           0.1016898 0.1707829 0.3174683 0.0464954 0.2649735 0.4645535 0.3614
+Sakibaru 0.0124888 0.0445828 0.1119137 0.1238103           0.3085691 0.0504950 0.0049995 0.4093591 0.0634937 0.0017
+Sani     0.0247223 0.0620870 0.1747119 0.2021185 0.3144030           0.0708929 0.0043996 0.3711629 0.0917908 0.0044
+Ashiken  0.5686511 0.9553831 0.3942418 0.3229773 0.0620783 0.0827042           0.4036596 0.1712829 0.8565143 0.6387
+Edateku  0.0806686 0.3102005 0.0718706 0.0526614 0.0051440 0.0072874 0.3791155           0.1135886 0.2460754 0.0530
+Heda     0.2322856 0.2020593 0.2690904 0.2814472 0.3897512 0.3666098 0.2002524 0.1405126           0.1904810 0.2050
+Taen     0.7567119 0.8553476 0.5195997 0.4298315 0.0787828 0.1071489 0.8238599 0.2633165 0.2181424           0.8266
+Yadon    0.9165883 0.5794008 0.5055263 0.3561178 0.0017924 0.0057842 0.5805514 0.0662974 0.2273318 0.7826934  
+</pre></div>
+</div>
+</div>
+<p>From the PERMDISP analysis, we can see that we have a slightly significant result. Hence, we cannot say that our PERMANOVA was significant due to point placement. Furthermore, we need to be careful with interpreting the PERMANOVA results, as one of the assumptions (equal dispersal) was violated.</p>
+</section>
+<section id="indicator-species-analysis">
+<h3>4.5 Indicator Species Analysis<a class="headerlink" href="#indicator-species-analysis" title="Permalink to this heading">#</a></h3>
+<p>To determine which signals are contributing to the difference observed in our ordination and PERMANOVA analysis, we can run an Indicator Species Analysis (ISA) using the <strong>indicspecies R package</strong>. The Indicator Value (IndVal) is a simple calculation based on the specificity (occurring only in one group or multiple) and fidelity (how frequently is it detected in each group). We can specify <code class="docutils literal notranslate"><span class="pre">indvalcomp</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> in the summary to provide the information about the specificity (component <code class="docutils literal notranslate"><span class="pre">A</span></code>) and fidelity (component <code class="docutils literal notranslate"><span class="pre">B</span></code>). For the tutorial data, we will restrict the indicator species as the ones with perfect specificity (<code class="docutils literal notranslate"><span class="pre">At=1.0</span></code>) and fidelity (<code class="docutils literal notranslate"><span class="pre">Bt=1.0</span></code>).</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## run indicator species analysis</span>
+<span class="n">indval</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">multipatt</span><span class="p">(</span><span class="n">beta_table_clean_pa</span><span class="p">,</span><span class="w"> </span><span class="n">metadata</span><span class="o">$</span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">how</span><span class="p">(</span><span class="n">nperm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9999</span><span class="p">))</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">indval</span><span class="p">,</span><span class="w"> </span><span class="n">indvalcomp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">At</span><span class="o">=</span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">Bt</span><span class="o">=</span><span class="m">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> Multilevel pattern analysis
+ ---------------------------
+
+ Association function: IndVal.g
+ Significance level (alpha): 0.05
+ Minimum positive predictive value (At): 1
+ Minimum sensitivity (Bt): 1
+
+ Total number of species: 1695
+ Selected number of species: 2 
+ Number of species associated to 1 group: 2 
+
+ List of species associated to each combination: 
+
+ Group south  #sps.  2 
+        A B stat p.value    
+ASV_257 1 1    1   1e-04 ***
+ASV_324 1 1    1   1e-04 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></div>
+</div>
+</div>
+<p>The output shows only 2 ASVs which have perfect specificity and fidelity for the south region, while no ASVs were observed with such characteristics for the north region. This, however, is to be expected, as the north vs south grouping was not observed in the ordination analysis. Hence, we would not expect a lot of ASVs to show perfect specificity and fidelity for the two regions.</p>
+<p>Finally, looping over the indicator species taxonomic IDs will provide information on which signals were deemed as indicative of the south region.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">## loop over taxonomy to explore indicator species</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">item</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;ASV_257&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;ASV_324&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">print</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">[</span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="n">kingdom</span>   <span class="n">phylum</span> <span class="k">class</span><span class="w">     </span><span class="nc">order</span>     <span class="n">family</span>   <span class="n">genus</span>          <span class="n">species</span> <span class="n">pident</span> <span class="n">qcov</span> <span class="n">matching</span> <span class="n">species</span> <span class="n">IDs</span> <span class="n">sequence_length</span> <span class="n">final_read_count</span>
+<span class="n">ASV_257</span>    <span class="o">&lt;</span><span class="n">NA</span><span class="o">&gt;</span> <span class="n">Oomycota</span>  <span class="o">&lt;</span><span class="n">NA</span><span class="o">&gt;</span> <span class="n">Pythiales</span> <span class="n">Pythiaceae</span> <span class="n">Pythium</span> <span class="n">Pythium_aquatile</span> <span class="mf">80.399</span>   <span class="mi">94</span>     <span class="n">Pythium</span> <span class="n">aquatile</span>             <span class="mi">313</span>             <span class="mi">1028</span>
+        <span class="n">pct_reads</span> <span class="n">occurrence_count</span> <span class="n">pct_occurrence</span>
+<span class="n">ASV_257</span>      <span class="mf">0.03</span>               <span class="mi">15</span>          <span class="mf">45.45</span>
+        <span class="n">kingdom</span>   <span class="n">phylum</span> <span class="k">class</span><span class="w">          </span><span class="nc">order</span>          <span class="n">family</span>        <span class="n">genus</span> <span class="n">species</span> <span class="n">pident</span> <span class="n">qcov</span>
+<span class="n">ASV_324</span>    <span class="o">&lt;</span><span class="n">NA</span><span class="o">&gt;</span> <span class="n">Oomycota</span>  <span class="o">&lt;</span><span class="n">NA</span><span class="o">&gt;</span> <span class="n">Peronosporales</span> <span class="n">Peronosporaceae</span> <span class="n">Phytophthora</span>    <span class="o">&lt;</span><span class="n">NA</span><span class="o">&gt;</span> <span class="mf">84.127</span>   <span class="mi">99</span>
+                                                         <span class="n">matching</span> <span class="n">species</span> <span class="n">IDs</span> <span class="n">sequence_length</span> <span class="n">final_read_count</span> <span class="n">pct_reads</span> <span class="n">occurrence_count</span>
+<span class="n">ASV_324</span> <span class="n">Phytophthora</span> <span class="n">niederhauseri</span><span class="p">,</span> <span class="n">Phytophthora</span> <span class="n">vignae</span><span class="p">,</span> <span class="n">Phytophthora</span> <span class="n">melonis</span>             <span class="mi">313</span>              <span class="mi">710</span>      <span class="mf">0.02</span>               <span class="mi">15</span>
+        <span class="n">pct_occurrence</span>
+<span class="n">ASV_324</span>          <span class="mf">45.45</span>
+</pre></div>
+</div>
+</div>
+<p>We will leave it at this for the introduction to the statistical analysis of metabarcoding data, as well as the full tutorial. We hope this workshop will benefit your research. Please feel free to contact me for any questions at <a class="reference external" href="mailto:gjeunen&#37;&#52;&#48;gmail&#46;com">gjeunen<span>&#64;</span>gmail<span>&#46;</span>com</a>.</p>
 </section>
 </section>
 </section>
@@ -914,9 +1450,19 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#taxa-exploration">2.3 Taxa exploration</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alpha-diversity">3. Alpha diversity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alpha-diversity">3. Alpha diversity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1 Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pd-and-sr">3.2 PD and SR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">3.3 Visualisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#significance-testing">3.4 Significance testing</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-diversity">4. Beta diversity</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-asvs-across-locations">4.1 Visualise ASVs across locations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ordination-analysis-pcoa">4.2 Ordination analysis (PCoA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permanova">4.3 PERMANOVA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permdisp">4.4 PERMDISP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indicator-species-analysis">4.5 Indicator Species Analysis</a></li>
 </ul>
 </li>
 </ul>
