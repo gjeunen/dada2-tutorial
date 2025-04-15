@@ -91,7 +91,7 @@ A bit more information about the code block above (as it might look a bit daunti
 
 ````{admonition} Understanding loops for efficient coding
 :class: tip, dropdown
-Writing loops, such as the `sapply()` loop above or for loops, are very common in bioinformatic pipelines, as they avoid repetitive code writing. For example, the `sapply()` loop above can also be written as (without the necessary check for the need to install a package first):
+Writing loops, such as the `for()` loop above, are very common in bioinformatic pipelines, as they avoid repetitive code writing. For example, the `for()` loop above can also be written as (without the necessary check for the need to install a package first):
 
 ```{code-block} R
 library(dada2); packageVersion("dada2")
