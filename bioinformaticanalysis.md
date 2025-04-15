@@ -10,15 +10,15 @@ Let's open a new R script, save it as `bioinformatic_pipeline.R` in the `bootcam
 ## set up the working environment
 setwd(file.path(Sys.getenv("HOME"), "Desktop", "bootcamp"))
 # package ShortRead needs to be installed, but not loaded
-required_packages <- c("dada2", "ggplot2", "gridExtra", "dplyr", "readr",
+required_packages <- c("dada2", "ggplot2", "gridExtra", "readr",
   "ggpubr", "stringr", "tidyverse", "scales")
-invisible(sapply(required_packages, function(pkg) {
+for (pkg in required_packages) {
   if (!require(pkg, character.only = TRUE)) {
-    install.packages(pkg)
-    library(pkg, character.only = TRUE)
+    stop(paste("Package", pkg, "is not installed. Please install it before proceeding."))
+  } else {
+    message(pkg, " version: ", packageVersion(pkg))
   }
-  message(pkg, " version: ", packageVersion(pkg))
-}))
+}
 ```
 
 ````{admonition} Output
@@ -85,10 +85,9 @@ A bit more information about the code block above (as it might look a bit daunti
 
 1. `#`: We can use this symbol to "comment out" code lines. This method is frequently used to provide more information about the code.
 2. `required_packages`: is a character vector containing all the package names we want to load.
-3. `sapply()`: is a function loop applying a function to each element of `required_packages`.
-4. `invisible()`: suppresses extra output from the function.
-5. `!require()`: tries to load a package (`library`), but if not successfully loaded, the package will be installed first (`install.packages`).
-6. `message()`: prints a formatted message for each package.
+3. `for()`: is a function loop, iterating over each element of `required_packages`.
+4. `!require()`: tries to load a package (`library`), but if not successfully loaded, it will prompt you to install this package.
+5. `message()`: prints a formatted message for each package.
 
 ````{admonition} Understanding loops for efficient coding
 :class: tip, dropdown
